@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Import&bull;io Example</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://cdn.import.io/js/2.0.0/importio.js"></script>
+    <body>
+        <button onclick="queryNews( 'abc' )">ABC News</button>
+        <button onclick="queryNews( 'aljazeera' )">Aljazeera America</button>
+        <button onclick="queryNews( 'bbc' )">BBC News</button>
+        <button onclick="queryNews( 'cnn' )">CNN News</button>
+        <button onclick="queryNews( 'fox' )">Fox News</button>
+        <button onclick="queryNews( 'google' )">Google News</button>
+        <button onclick="queryNews( 'frontline' )">Frontline News</button>
+        <button onclick="queryNews( 'newrepublic' )">New Republic</button>
+        <button onclick="queryNews( 'huffpost' )">Huffington Post</button>
+        <button onclick="queryNews( 'nytimes' )">New York Times</button>
+        <button onclick="queryNews( 'npr' )">NPR</button>
+        <button onclick="queryNews( 'reddit' )">Reddit</button>
+        <button onclick="queryNews( 'reddit_top' )">Reddit Top</button>
+        <button onclick="queryNews( 'wired' )">Wired</button>
+    </body>
+    <script type="text/javascript">
+    function queryNews( network ) {
+        $.ajax({
+            url: 'index.php',
+            method: 'POST',
+            data: {
+                'network': network
+            },
+            error: function( jqxhr, textStatus, errorThrown ){
+                console.log( 'jqxhr:' + jqxhr, '\ntextStatus:' + textStatus, '\nerrorThrown:' + errorThrown );
+            }
+        }).done( function returnData( data ) {
+            console.log( data );
+            $('body').append( data );
+        });
+    }
+    </script>
+</html>

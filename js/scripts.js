@@ -25,15 +25,18 @@ function showTrack( trackID ) {
     var $newTrack = $('#' + trackID);
     $newTrack = $newTrack.remove();
     $('.tracks').append( $newTrack );
+    $newTrack.show();
 
     var curWidth = $('.tracks').width(),
         numTracks = $('.tracks .track:visible').length,
-        newWidth = ( numTracks * 300 ) + ( numTracks * 10 ) + 10; // +10 for extra padding at the end
+        newWidth = ( numTracks * 300 ) + ( numTracks * 10 );
 
     if( curWidth < newWidth ){
         $('.buttons').width( newWidth - 40 ); // -40 for padding
         $('.tracks').width( newWidth );
     }
+
+    $('.tracks:first:visible').css( 'margin-left', '10px' );
 }
 
 function queryNews( network ) {

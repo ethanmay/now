@@ -4,37 +4,69 @@
     <title>Import&bull;io Example</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://cdn.import.io/js/2.0.0/importio.js"></script>
+    <script src="./js/scripts.js"></script>
+    <link rel="stylesheet" href="./css/styles.css">
     <body>
-        <button onclick="queryNews( 'abc' )">ABC News</button>
-        <button onclick="queryNews( 'aljazeera' )">Aljazeera America</button>
-        <button onclick="queryNews( 'bbc' )">BBC News</button>
-        <button onclick="queryNews( 'cnn' )">CNN News</button>
-        <button onclick="queryNews( 'fox' )">Fox News</button>
-        <button onclick="queryNews( 'google' )">Google News</button>
-        <button onclick="queryNews( 'frontline' )">Frontline News</button>
-        <button onclick="queryNews( 'newrepublic' )">New Republic</button>
-        <button onclick="queryNews( 'huffpost' )">Huffington Post</button>
-        <button onclick="queryNews( 'nytimes' )">New York Times</button>
-        <button onclick="queryNews( 'npr' )">NPR</button>
-        <button onclick="queryNews( 'reddit' )">Reddit</button>
-        <button onclick="queryNews( 'reddit_top' )">Reddit Top</button>
-        <button onclick="queryNews( 'wired' )">Wired</button>
+        <div class="buttons">
+            <button data-reveal="abc">ABC News</button>
+            <button data-reveal="aljazeera">Aljazeera America</button>
+            <button data-reveal="bbc">BBC News</button>
+            <button data-reveal="cnn">CNN News</button>
+            <button data-reveal="fox">Fox News</button>
+            <button data-reveal="google">Google News</button>
+            <button data-reveal="frontline">Frontline News</button>
+            <button data-reveal="newrepublic">New Republic</button>
+            <button data-reveal="huffpost">Huffington Post</button>
+            <button data-reveal="nytimes">New York Times</button>
+            <button data-reveal="npr">NPR</button>
+            <button data-reveal="reddit">Reddit</button>
+            <button data-reveal="reddit_top">Reddit Top</button>
+            <button data-reveal="wired">Wired</button>
+        </div>
+    
+        <div class="tracks">
+            <div id="abc" class="track">
+            </div>
+
+            <div id="aljazeera" class="track">
+            </div>
+
+            <div id="bbc" class="track">
+            </div>
+
+            <div id="cnn" class="track">
+            </div>
+
+            <div id="fox" class="track">
+            </div>
+
+            <div id="google" class="track">
+            </div>
+
+            <div id="frontline" class="track">
+            </div>
+
+            <div id="newrepublic" class="track">
+            </div>
+
+            <div id="huffpost" class="track">
+            </div>
+
+            <div id="nytimes" class="track">
+            </div>
+
+            <div id="npr" class="track">
+            </div>
+
+            <div id="reddit" class="track">
+            </div>
+
+            <div id="reddit_top" class="track">
+            </div>
+
+            <div id="wired" class="track">
+            </div>
+        </div>
+
     </body>
-    <script type="text/javascript">
-    function queryNews( network ) {
-        $.ajax({
-            url: 'index.php',
-            method: 'POST',
-            data: {
-                'network': network
-            },
-            error: function( jqxhr, textStatus, errorThrown ){
-                console.log( 'jqxhr:' + jqxhr, '\ntextStatus:' + textStatus, '\nerrorThrown:' + errorThrown );
-            }
-        }).done( function returnData( data ) {
-            console.log( data );
-            $('body').append( data );
-        });
-    }
-    </script>
 </html>

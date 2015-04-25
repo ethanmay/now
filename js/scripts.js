@@ -29,14 +29,14 @@ function showTrack( trackID ) {
 
     var curWidth = $('.tracks').width(),
         numTracks = $('.tracks .track:visible').length,
-        newWidth = ( numTracks * 300 ) + ( numTracks * 10 );
+        newWidth = ( numTracks * 300 ) + ( numTracks * 10 ) + 10; // +10 for margin-left
 
     if( curWidth < newWidth ){
         $('.buttons').width( newWidth - 40 ); // -40 for padding
         $('.tracks').width( newWidth );
     }
 
-    $('.tracks:first:visible').css( 'margin-left', '10px' );
+    $('.tracks .track:visible:first').css( 'margin-left', '10px' );
 }
 
 function queryNews( network ) {

@@ -2,15 +2,6 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    autoprefixer: {
-      single_file: {
-        options: {
-          // Target-specific options go here.
-        },
-        src: 'css/styles.css'
-      },
-    },
-
     sass: {
       options: {
         // includePaths: ['bower_components/foundation/scss']
@@ -47,11 +38,6 @@ module.exports = function(grunt) {
         tasks: ['jshint']
       },
 
-      autoprefixer: {
-        files: 'css/styles.css',
-        tasks: ['autoprefixer']
-      },
-
       uglify: {
         files: 'js/scripts.js',
         tasks: ['uglify']
@@ -73,7 +59,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.registerTask('test', ['sass, jshint']);

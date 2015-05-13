@@ -1,4 +1,51 @@
 /*
+
+    Mixins
+
+ */
+@mixin imgGlitch($name, $intensity, $width, $height, $top, $left) {
+  
+    $steps: $intensity;
+
+    // Ensure the @keyframes are generated at the root level
+    @at-root {
+        // We need two different ones
+        @for $i from 1 through 2 {
+            @keyframes #{$name}-anim-#{$i} {
+                @for $i from 0 through $steps {
+                    #{percentage($i*(1/$steps))} {
+                        clip: rect(
+                            random($height)+px,
+                            $width+px,
+                            random($height)+px,
+                            0
+                        );
+                    }
+                }
+            }
+        }
+    }
+  
+    > img {
+        position: absolute;
+        top: $top+px;
+        left: $left+px;
+    }
+    > img:nth-child(2),
+    > img:nth-child(3){
+        clip: rect(0, 0, 0, 0); 
+    }
+    > img:nth-child(2) {
+        left: ($left + 2) + px;
+        animation: #{$name}-anim-1 2s infinite linear alternate-reverse;
+    }
+    > img:nth-child(3) {
+        left: ($left - 2) + px;
+        animation: #{$name}-anim-2 3s infinite linear alternate-reverse;
+    }
+}
+
+/*
 	
 	General Styles
 
@@ -18,21 +65,83 @@ body {
 
 */
 
-.buttons {
-    height: 114px;
-    padding: 20px;
-    background: #cfcfcf;
-    padding-bottom: 0;
-    position: relative;
-    z-index: 3;
-    transition: 'all, 370ms, ease-in-out';
+#reveal-menu {
+    position: fixed;
+    top: 10px;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border: 1px solid #A8A8A8;
+    border-left: none;
+    cursor: pointer;
+    z-index: 2;
 
-    button {
-	    display: inline-block;
-	    padding: 7px 8px;
-	    margin-right: 10px;
-	    margin-bottom: 20px;
-	}
+    .span-ctn {
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 11px 10px;
+
+        span {
+            display: block;
+            width: 29px;
+            margin: auto;
+            margin-bottom: 5px;
+            height: 5px;
+            background: red;
+            border-radius: 0;
+            transition: all, 370ms, ease-in-out;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    &:hover, &.active {
+
+        .span-ctn span {
+            width: 5px;
+            border-radius: 50%;
+        }
+    }
+}
+
+.buttons {
+    height: 100%;
+    padding: 20px;
+    background: #fff;
+    padding-bottom: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: -200px;
+    width: 200px;
+    border-right: 1px solid #A8A8A8;
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: block;
+            padding: 10px 0;
+            border-top: 1px solid #A8A8A8;
+            cursor: pointer;
+            font-family: 'Oswald', sans-serif, 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+            font-weight: lighter;
+
+            &:last-child {
+                border-bottom: 1px solid #A8A8A8;
+            }
+
+            &:hover, &.active {
+                color: red;
+            }
+        }
+    }
 }
 
 .tracks {
@@ -40,19 +149,255 @@ body {
     top: 0;
     left: 0;
     padding: 10px 0;
-    padding-top: 124px;
     width: 100%;
     height: 100%;
     overflow-x: scroll;
+    overflow-y: hidden;
+    background: #fff url('../images/logo.png') no-repeat center center;
 
     .track {
+        display: none;
         float: left;
         width: 300px;
-	    padding: 10px;
-	    border-radius: 4px;
-	    background: #fafafa;
-	    border: 1px solid #cfcfcf;
         overflow: scroll;
         margin-right: 10px;
+        position: relative;
+
+        .track-content {
+            border-radius: 4px;
+            background: #fafafa;
+            background: rgba(250, 250, 250, 0.95);
+            border: 1px solid #cfcfcf;
+            padding: 10px;
+            margin-top: 160px;
+            display: block;
+            width: 100%;
+        }
+
+        .track-link {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin-left: -75px;
+            width: 150px;
+            height: 150px;
+            display: block;
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                &:nth-child(2) {
+                    opacity: 0;
+                }
+            }
+
+            &.aljazeera {
+                img {
+                    left: 18px;
+                }
+            }
+            &.bbc {
+                img {
+                    top: 18px;
+                }
+            }
+            &.google {
+                img {
+                    top: 57px;
+                }
+            }
+            &.frontline {
+                img {
+                    top: 26px;
+                }
+            }
+            &.newrepublic {
+                img {
+                    top: 61px;
+                }
+            }
+            &.huffpost {
+                img {
+                    top: 44px;
+                }
+            }
+            &.nytimes {
+                img {
+                    top: 62px;
+                }
+            }
+            &.npr {
+                img {
+                    top: 49px;
+                }
+            }
+            &.reddit, &.reddit_top {
+                img {
+                    top: 44px;
+                }
+            }
+            &.wired {
+                img {
+                    top: 57px;
+                }
+            }
+        }
+
+        &#abc {
+            &:hover {
+                .abc {
+                    @include imgGlitch( 'abc', 10, 150, 150, 0, 0 );
+
+                    img:nth-child(2) {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &#aljazeera {
+            &:hover {
+                .aljazeera {
+                    @include imgGlitch( 'aljazeera', 10, 150, 150, 0, 18 );
+
+                    img:nth-child(2) {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &#bbc {
+            &:hover {
+                .bbc {
+                    @include imgGlitch( 'bbc', 10, 150, 150, 18, 0 );
+
+                    img:nth-child(2) {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &#cnn {
+            &:hover {
+                .cnn {
+                    @include imgGlitch( 'cnn', 10, 150, 150, 0, 0 );
+
+                    img:nth-child(2) {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &#fox {
+            &:hover {
+                .fox {
+                    @include imgGlitch( 'fox', 10, 150, 150, 0, 0 );
+
+                    img:nth-child(2) {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &#frontline {
+            &:hover {
+                .frontline {
+                    @include imgGlitch( 'frontline', 10, 150, 150, 26, 0 );
+
+                    img:nth-child(2) {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &#google {
+            &:hover {
+                .google {
+                    @include imgGlitch( 'google', 10, 150, 150, 57, 0 );
+
+                    img:nth-child(2) {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &#huffpost {
+            &:hover {
+                .huffpost {
+                    @include imgGlitch( 'huffpost', 10, 150, 150, 44, 0 );
+
+                    img:nth-child(2) {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &#newrepublic {
+            &:hover {
+                .newrepublic {
+                    @include imgGlitch( 'newrepublic', 10, 150, 150, 61, 0 );
+
+                    img:nth-child(2) {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &#nytimes {
+            &:hover {
+                .nytimes {
+                    @include imgGlitch( 'nytimes', 10, 150, 150, 62, 0 );
+
+                    img:nth-child(2) {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &#npr {
+            &:hover {
+                .npr {
+                    @include imgGlitch( 'npr', 10, 150, 150, 49, 0 );
+
+                    img:nth-child(2) {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &#reddit {
+            &:hover {
+                .reddit {
+                    @include imgGlitch( 'reddit', 10, 150, 150, 44, 0 );
+
+                    img:nth-child(2) {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &#reddit_top {
+            &:hover {
+                .reddit_top {
+                    @include imgGlitch( 'reddit_top', 10, 150, 150, 44, 0 );
+
+                    img:nth-child(2) {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &#wired {
+            &:hover {
+                .wired {
+                    @include imgGlitch( 'wired', 10, 150, 150, 57, 0 );
+
+                    img:nth-child(2) {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
 	}
 }

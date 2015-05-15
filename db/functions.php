@@ -1,39 +1,5 @@
 <?php
 
-if( $_REQUEST["network"] ){
-
-	require_once( './db/init.php' );
-
-	$network = $_REQUEST["network"];
-
-	if( $network == 'all' ) {
-		$news = get_all_news();
-	}
-	else {
-		$network_id = $db->get_var( "SELECT id FROM networks WHERE network = '$network'" );
-		if( !$network_id ) {
-			$db->query( "INSERT INTO networks( network ) VALUES ( '$network' )" );
-			$network_id = $db->get_var( "SELECT id FROM networks WHERE network = '$network'" );
-		}
-
-		$news = get_news_by_network( $network );
-	}
-
-	$parsed = parse_news( $news );
-
-	for( $i = 0; $i < count( $parsed ); $i++ ) {
-		$headline = $parsed[ $i ];
-		echo $headline;
-		echo '<br><br>';
-		$headline = $db->escape( $headline );
-		$db->query( "INSERT INTO headlines( network_id, content ) VALUES ( $network_id, '$headline' )" );
-	}
-
-	$db->debug();
-
-	// get_sentiments( $parsed );
-}
-
 /**
  * query_import_io
  * Query Import.io Data.
@@ -70,7 +36,7 @@ function query_import_io( $connectorGuid, $input ) {
  * 
  * @return array( object )
  */
-function get_all_news() {
+function import_all_news() {
 
 	$news = Array();
 
@@ -107,14 +73,13 @@ function get_all_news() {
 }
 
 /**
- * get_news_by_network
- * Get all news results.
+ * import_news_by_network
+ * Gets news from import.io based on netowrk.
  * 
- * @param  string
+ * @param  string $network
  * @return array( object )
  */
-function get_news_by_network( $network ) {
-
+function import_news_by_network( $network ) {
 	$news = Array();
 
 	switch( $network ) {
@@ -177,6 +142,83 @@ function get_news_by_network( $network ) {
 			break;
 		default:
 			error_log( 'ya dun fucked up' );
+			break;
+	}
+}
+
+/**
+ * get_news_by_network
+ * Get all news results from DB.
+ * 
+ * @param  string
+ * @return array( object )
+ */
+function get_news_by_network( $network ) {
+	
+	global $db;
+
+	switch( $network ) {
+
+		case 'all':
+			$news['abc'] = $db->get_results( "SELECT content FROM headlines WHERE network_id = 4" );
+			$news['aljazeera'] = $db->get_results( "SELECT content FROM headlines WHERE network_id = 5" );
+			$news['bbc'] = $db->get_results( "SELECT content FROM headlines WHERE network_id = 6" );
+			$news['cnn'] = $db->get_results( "SELECT content FROM headlines WHERE network_id = 7" );
+			$news['fox'] = $db->get_results( "SELECT content FROM headlines WHERE network_id = 8" );
+			$news['google'] = $db->get_results( "SELECT content FROM headlines WHERE network_id = 9" );
+			$news['frontline'] = $db->get_results( "SELECT content FROM headlines WHERE network_id = 10" );
+			$news['newrepublic'] = $db->get_results( "SELECT content FROM headlines WHERE network_id = 11" );
+			$news['huffpost'] = $db->get_results( "SELECT content FROM headlines WHERE network_id = 12" );
+			$news['nytimes'] = $db->get_results( "SELECT content FROM headlines WHERE network_id = 13" );
+			$news['npr'] = $db->get_results( "SELECT content FROM headlines WHERE network_id = 14" );
+			$news['reddit'] = $db->get_results( "SELECT content FROM headlines WHERE network_id = 15" );
+			$news['reddit_top'] = $db->get_results( "SELECT content FROM headlines WHERE network_id = 16" );
+			$news['wired'] = $db->get_results( "SELECT content FROM headlines WHERE network_id = 17" );
+			break;
+		case 'abc':
+			$news = $db->get_results( "SELECT content FROM headlines WHERE network_id = 4" );
+			break;
+		case 'aljazeera':
+			$news = $db->get_results( "SELECT content FROM headlines WHERE network_id = 5" );
+			break;
+		case 'bbc':
+			$news = $db->get_results( "SELECT content FROM headlines WHERE network_id = 6" );
+			break;
+		case 'cnn':
+			$news = $db->get_results( "SELECT content FROM headlines WHERE network_id = 7" );
+			break;
+		case 'fox':
+			$news = $db->get_results( "SELECT content FROM headlines WHERE network_id = 8" );
+			break;
+		case 'google':
+			$news = $db->get_results( "SELECT content FROM headlines WHERE network_id = 9" );
+			break;
+		case 'frontline':
+			$news = $db->get_results( "SELECT content FROM headlines WHERE network_id = 10" );
+			break;
+		case 'newrepublic':
+			$news = $db->get_results( "SELECT content FROM headlines WHERE network_id = 11" );
+			break;
+		case 'huffpost':
+			$news = $db->get_results( "SELECT content FROM headlines WHERE network_id = 12" );
+			break;
+		case 'nytimes':
+			$news = $db->get_results( "SELECT content FROM headlines WHERE network_id = 13" );
+			break;
+		case 'npr':
+			$news = $db->get_results( "SELECT content FROM headlines WHERE network_id = 14" );
+			break;
+		case 'reddit':
+			$news = $db->get_results( "SELECT content FROM headlines WHERE network_id = 15" );
+			break;
+		case 'reddit_top':
+			$news = $db->get_results( "SELECT content FROM headlines WHERE network_id = 16" );
+			break;
+		case 'wired':
+			$news = $db->get_results( "SELECT content FROM headlines WHERE network_id = 17" );
+			break;
+		default:
+			error_log( "my bad" );
 			break;
 	}
 

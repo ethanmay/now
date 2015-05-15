@@ -4,6 +4,7 @@
         <title>NOW - News Overtone Watch</title>
         <link rel="stylesheet" href="./css/styles.css">
         <link href='//fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
         <link rel="icon" type="image/png" href="./favicon.png">
         <link rel="icon" type="image/png" href="./favicon.ico">
     </head>

@@ -12,7 +12,10 @@
   box-sizing: border-box; }
 
 body {
-  margin: 0; }
+  margin: 0;
+  font-family: 'Lora', 'Georgia', 'Times New Roman', serif;
+  font-size: 14px;
+  color: #333; }
 
 /*
 
@@ -70,8 +73,9 @@ body {
       padding: 10px 0;
       border-top: 1px solid #A8A8A8;
       cursor: pointer;
-      font-family: 'Oswald', sans-serif, 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-      font-weight: lighter; }
+      font-family: 'Oswald', 'Helvetica Neue', 'Helvetica', 'Impact', 'Arial', sans-serif;
+      font-weight: lighter;
+      font-size: 18px; }
       .buttons ul li:last-child {
         border-bottom: 1px solid #A8A8A8; }
       .buttons ul li:hover, .buttons ul li.active {
@@ -93,16 +97,38 @@ body {
     width: 300px;
     overflow: scroll;
     margin-right: 10px;
-    position: relative; }
+    position: relative;
+    border-bottom: 1px solid #cfcfcf;
+    transition: border-bottom-color, 370ms, ease-in-out; }
     .tracks .track .track-content {
       border-radius: 4px;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
       background: #fafafa;
       background: rgba(250, 250, 250, 0.95);
       border: 1px solid #cfcfcf;
-      padding: 10px;
+      border-bottom: none;
+      padding: 4px;
       margin-top: 160px;
       display: block;
-      width: 100%; }
+      width: 100%;
+      transition: border-color, 370ms, ease-in-out; }
+      .tracks .track .track-content .story-ctn {
+        padding: 7px;
+        border: 1px solid #efefef;
+        border-bottom: 1px solid transparent; }
+        .tracks .track .track-content .story-ctn:first-child {
+          border-top-right-radius: 3px;
+          border-top-left-radius: 3px; }
+        .tracks .track .track-content .story-ctn:last-child {
+          border-bottom: 1px solid #efefef;
+          border-bottom-left-radius: 3px;
+          border-bottom-right-radius: 3px; }
+        .tracks .track .track-content .story-ctn:hover {
+          border-bottom: 1px solid;
+          border-color: #666; }
+          .tracks .track .track-content .story-ctn:hover + .story-ctn {
+            border-top: 1px solid transparent; }
     .tracks .track .track-link {
       position: absolute;
       top: 0;
@@ -140,51 +166,51 @@ body {
 
 @keyframes abc-anim-1 {
   0% {
-    clip: rect(28px, 150px, 61px, 0); }
+    clip: rect(142px, 150px, 24px, 0); }
   10% {
-    clip: rect(59px, 150px, 14px, 0); }
+    clip: rect(2px, 150px, 68px, 0); }
   20% {
-    clip: rect(41px, 150px, 92px, 0); }
+    clip: rect(41px, 150px, 42px, 0); }
   30% {
-    clip: rect(131px, 150px, 79px, 0); }
+    clip: rect(33px, 150px, 90px, 0); }
   40% {
-    clip: rect(107px, 150px, 35px, 0); }
+    clip: rect(89px, 150px, 100px, 0); }
   50% {
-    clip: rect(65px, 150px, 134px, 0); }
+    clip: rect(56px, 150px, 120px, 0); }
   60% {
-    clip: rect(81px, 150px, 78px, 0); }
+    clip: rect(93px, 150px, 144px, 0); }
   70% {
-    clip: rect(85px, 150px, 122px, 0); }
+    clip: rect(138px, 150px, 42px, 0); }
   80% {
-    clip: rect(92px, 150px, 23px, 0); }
+    clip: rect(30px, 150px, 93px, 0); }
   90% {
-    clip: rect(52px, 150px, 71px, 0); }
+    clip: rect(134px, 150px, 129px, 0); }
   100% {
-    clip: rect(60px, 150px, 94px, 0); } }
+    clip: rect(98px, 150px, 66px, 0); } }
 
 @keyframes abc-anim-2 {
   0% {
-    clip: rect(137px, 150px, 79px, 0); }
+    clip: rect(93px, 150px, 79px, 0); }
   10% {
-    clip: rect(149px, 150px, 127px, 0); }
+    clip: rect(17px, 150px, 118px, 0); }
   20% {
-    clip: rect(2px, 150px, 25px, 0); }
+    clip: rect(76px, 150px, 79px, 0); }
   30% {
-    clip: rect(26px, 150px, 27px, 0); }
+    clip: rect(72px, 150px, 135px, 0); }
   40% {
-    clip: rect(136px, 150px, 53px, 0); }
+    clip: rect(137px, 150px, 75px, 0); }
   50% {
-    clip: rect(80px, 150px, 133px, 0); }
+    clip: rect(10px, 150px, 14px, 0); }
   60% {
-    clip: rect(102px, 150px, 27px, 0); }
+    clip: rect(78px, 150px, 146px, 0); }
   70% {
-    clip: rect(131px, 150px, 16px, 0); }
+    clip: rect(81px, 150px, 103px, 0); }
   80% {
-    clip: rect(37px, 150px, 87px, 0); }
+    clip: rect(52px, 150px, 48px, 0); }
   90% {
-    clip: rect(131px, 150px, 13px, 0); }
+    clip: rect(117px, 150px, 60px, 0); }
   100% {
-    clip: rect(124px, 150px, 58px, 0); } }
+    clip: rect(43px, 150px, 142px, 0); } }
     .tracks .track#abc:hover .abc > img {
       position: absolute;
       top: 0px;
@@ -203,51 +229,51 @@ body {
 
 @keyframes aljazeera-anim-1 {
   0% {
-    clip: rect(58px, 150px, 115px, 0); }
+    clip: rect(76px, 150px, 117px, 0); }
   10% {
-    clip: rect(17px, 150px, 110px, 0); }
+    clip: rect(104px, 150px, 21px, 0); }
   20% {
-    clip: rect(50px, 150px, 142px, 0); }
+    clip: rect(147px, 150px, 78px, 0); }
   30% {
-    clip: rect(15px, 150px, 54px, 0); }
+    clip: rect(39px, 150px, 101px, 0); }
   40% {
-    clip: rect(121px, 150px, 3px, 0); }
+    clip: rect(8px, 150px, 117px, 0); }
   50% {
-    clip: rect(117px, 150px, 98px, 0); }
+    clip: rect(139px, 150px, 150px, 0); }
   60% {
-    clip: rect(61px, 150px, 81px, 0); }
+    clip: rect(142px, 150px, 70px, 0); }
   70% {
-    clip: rect(38px, 150px, 147px, 0); }
+    clip: rect(84px, 150px, 129px, 0); }
   80% {
-    clip: rect(54px, 150px, 110px, 0); }
+    clip: rect(73px, 150px, 22px, 0); }
   90% {
-    clip: rect(28px, 150px, 26px, 0); }
+    clip: rect(69px, 150px, 143px, 0); }
   100% {
-    clip: rect(6px, 150px, 93px, 0); } }
+    clip: rect(121px, 150px, 119px, 0); } }
 
 @keyframes aljazeera-anim-2 {
   0% {
-    clip: rect(26px, 150px, 23px, 0); }
+    clip: rect(41px, 150px, 2px, 0); }
   10% {
-    clip: rect(148px, 150px, 32px, 0); }
+    clip: rect(93px, 150px, 137px, 0); }
   20% {
-    clip: rect(27px, 150px, 58px, 0); }
+    clip: rect(2px, 150px, 17px, 0); }
   30% {
-    clip: rect(43px, 150px, 128px, 0); }
+    clip: rect(39px, 150px, 25px, 0); }
   40% {
-    clip: rect(71px, 150px, 59px, 0); }
+    clip: rect(118px, 150px, 5px, 0); }
   50% {
-    clip: rect(93px, 150px, 136px, 0); }
+    clip: rect(147px, 150px, 102px, 0); }
   60% {
-    clip: rect(139px, 150px, 12px, 0); }
+    clip: rect(101px, 150px, 139px, 0); }
   70% {
-    clip: rect(81px, 150px, 16px, 0); }
+    clip: rect(7px, 150px, 70px, 0); }
   80% {
-    clip: rect(82px, 150px, 135px, 0); }
+    clip: rect(96px, 150px, 103px, 0); }
   90% {
-    clip: rect(79px, 150px, 87px, 0); }
+    clip: rect(127px, 150px, 84px, 0); }
   100% {
-    clip: rect(144px, 150px, 33px, 0); } }
+    clip: rect(46px, 150px, 110px, 0); } }
     .tracks .track#aljazeera:hover .aljazeera > img {
       position: absolute;
       top: 0px;
@@ -266,51 +292,51 @@ body {
 
 @keyframes bbc-anim-1 {
   0% {
-    clip: rect(104px, 150px, 62px, 0); }
+    clip: rect(101px, 150px, 17px, 0); }
   10% {
-    clip: rect(149px, 150px, 25px, 0); }
+    clip: rect(110px, 150px, 32px, 0); }
   20% {
-    clip: rect(125px, 150px, 47px, 0); }
+    clip: rect(105px, 150px, 120px, 0); }
   30% {
-    clip: rect(143px, 150px, 27px, 0); }
+    clip: rect(118px, 150px, 28px, 0); }
   40% {
-    clip: rect(4px, 150px, 67px, 0); }
+    clip: rect(93px, 150px, 137px, 0); }
   50% {
-    clip: rect(49px, 150px, 19px, 0); }
+    clip: rect(65px, 150px, 14px, 0); }
   60% {
-    clip: rect(118px, 150px, 56px, 0); }
+    clip: rect(148px, 150px, 29px, 0); }
   70% {
-    clip: rect(147px, 150px, 145px, 0); }
+    clip: rect(117px, 150px, 36px, 0); }
   80% {
-    clip: rect(72px, 150px, 136px, 0); }
+    clip: rect(51px, 150px, 99px, 0); }
   90% {
-    clip: rect(13px, 150px, 14px, 0); }
+    clip: rect(63px, 150px, 140px, 0); }
   100% {
-    clip: rect(139px, 150px, 117px, 0); } }
+    clip: rect(30px, 150px, 38px, 0); } }
 
 @keyframes bbc-anim-2 {
   0% {
-    clip: rect(12px, 150px, 136px, 0); }
+    clip: rect(34px, 150px, 149px, 0); }
   10% {
-    clip: rect(142px, 150px, 4px, 0); }
+    clip: rect(86px, 150px, 126px, 0); }
   20% {
-    clip: rect(21px, 150px, 69px, 0); }
+    clip: rect(133px, 150px, 74px, 0); }
   30% {
-    clip: rect(1px, 150px, 51px, 0); }
+    clip: rect(108px, 150px, 74px, 0); }
   40% {
-    clip: rect(28px, 150px, 83px, 0); }
+    clip: rect(144px, 150px, 142px, 0); }
   50% {
-    clip: rect(17px, 150px, 91px, 0); }
+    clip: rect(62px, 150px, 98px, 0); }
   60% {
-    clip: rect(117px, 150px, 3px, 0); }
+    clip: rect(143px, 150px, 34px, 0); }
   70% {
-    clip: rect(66px, 150px, 133px, 0); }
+    clip: rect(70px, 150px, 19px, 0); }
   80% {
-    clip: rect(91px, 150px, 38px, 0); }
+    clip: rect(84px, 150px, 135px, 0); }
   90% {
-    clip: rect(150px, 150px, 27px, 0); }
+    clip: rect(11px, 150px, 29px, 0); }
   100% {
-    clip: rect(88px, 150px, 81px, 0); } }
+    clip: rect(98px, 150px, 121px, 0); } }
     .tracks .track#bbc:hover .bbc > img {
       position: absolute;
       top: 18px;
@@ -329,51 +355,51 @@ body {
 
 @keyframes cnn-anim-1 {
   0% {
-    clip: rect(69px, 150px, 61px, 0); }
+    clip: rect(77px, 150px, 7px, 0); }
   10% {
-    clip: rect(56px, 150px, 125px, 0); }
+    clip: rect(4px, 150px, 111px, 0); }
   20% {
-    clip: rect(131px, 150px, 94px, 0); }
+    clip: rect(116px, 150px, 39px, 0); }
   30% {
-    clip: rect(64px, 150px, 26px, 0); }
+    clip: rect(138px, 150px, 49px, 0); }
   40% {
-    clip: rect(114px, 150px, 54px, 0); }
+    clip: rect(149px, 150px, 96px, 0); }
   50% {
-    clip: rect(17px, 150px, 131px, 0); }
+    clip: rect(61px, 150px, 20px, 0); }
   60% {
-    clip: rect(59px, 150px, 91px, 0); }
+    clip: rect(118px, 150px, 140px, 0); }
   70% {
-    clip: rect(31px, 150px, 106px, 0); }
+    clip: rect(1px, 150px, 61px, 0); }
   80% {
-    clip: rect(75px, 150px, 138px, 0); }
+    clip: rect(99px, 150px, 63px, 0); }
   90% {
-    clip: rect(32px, 150px, 119px, 0); }
+    clip: rect(140px, 150px, 120px, 0); }
   100% {
-    clip: rect(66px, 150px, 117px, 0); } }
+    clip: rect(56px, 150px, 76px, 0); } }
 
 @keyframes cnn-anim-2 {
   0% {
-    clip: rect(2px, 150px, 25px, 0); }
+    clip: rect(24px, 150px, 15px, 0); }
   10% {
-    clip: rect(63px, 150px, 40px, 0); }
+    clip: rect(67px, 150px, 111px, 0); }
   20% {
-    clip: rect(119px, 150px, 33px, 0); }
+    clip: rect(87px, 150px, 86px, 0); }
   30% {
-    clip: rect(99px, 150px, 63px, 0); }
+    clip: rect(2px, 150px, 6px, 0); }
   40% {
-    clip: rect(45px, 150px, 126px, 0); }
+    clip: rect(133px, 150px, 97px, 0); }
   50% {
-    clip: rect(13px, 150px, 125px, 0); }
+    clip: rect(143px, 150px, 147px, 0); }
   60% {
-    clip: rect(102px, 150px, 36px, 0); }
+    clip: rect(90px, 150px, 91px, 0); }
   70% {
-    clip: rect(82px, 150px, 107px, 0); }
+    clip: rect(65px, 150px, 85px, 0); }
   80% {
-    clip: rect(93px, 150px, 92px, 0); }
+    clip: rect(91px, 150px, 1px, 0); }
   90% {
-    clip: rect(134px, 150px, 118px, 0); }
+    clip: rect(57px, 150px, 8px, 0); }
   100% {
-    clip: rect(22px, 150px, 140px, 0); } }
+    clip: rect(4px, 150px, 56px, 0); } }
     .tracks .track#cnn:hover .cnn > img {
       position: absolute;
       top: 0px;
@@ -392,51 +418,51 @@ body {
 
 @keyframes fox-anim-1 {
   0% {
-    clip: rect(59px, 150px, 124px, 0); }
+    clip: rect(130px, 150px, 22px, 0); }
   10% {
-    clip: rect(123px, 150px, 118px, 0); }
+    clip: rect(112px, 150px, 126px, 0); }
   20% {
-    clip: rect(111px, 150px, 101px, 0); }
+    clip: rect(90px, 150px, 9px, 0); }
   30% {
-    clip: rect(114px, 150px, 24px, 0); }
+    clip: rect(32px, 150px, 60px, 0); }
   40% {
-    clip: rect(47px, 150px, 122px, 0); }
+    clip: rect(57px, 150px, 112px, 0); }
   50% {
-    clip: rect(96px, 150px, 32px, 0); }
+    clip: rect(132px, 150px, 124px, 0); }
   60% {
-    clip: rect(53px, 150px, 45px, 0); }
+    clip: rect(146px, 150px, 134px, 0); }
   70% {
-    clip: rect(141px, 150px, 9px, 0); }
+    clip: rect(82px, 150px, 37px, 0); }
   80% {
-    clip: rect(106px, 150px, 101px, 0); }
+    clip: rect(98px, 150px, 58px, 0); }
   90% {
-    clip: rect(111px, 150px, 100px, 0); }
+    clip: rect(15px, 150px, 50px, 0); }
   100% {
-    clip: rect(103px, 150px, 83px, 0); } }
+    clip: rect(16px, 150px, 150px, 0); } }
 
 @keyframes fox-anim-2 {
   0% {
-    clip: rect(86px, 150px, 143px, 0); }
+    clip: rect(135px, 150px, 5px, 0); }
   10% {
-    clip: rect(125px, 150px, 36px, 0); }
+    clip: rect(68px, 150px, 5px, 0); }
   20% {
-    clip: rect(144px, 150px, 114px, 0); }
+    clip: rect(57px, 150px, 64px, 0); }
   30% {
-    clip: rect(98px, 150px, 96px, 0); }
+    clip: rect(119px, 150px, 22px, 0); }
   40% {
-    clip: rect(117px, 150px, 136px, 0); }
+    clip: rect(5px, 150px, 40px, 0); }
   50% {
-    clip: rect(129px, 150px, 127px, 0); }
+    clip: rect(76px, 150px, 74px, 0); }
   60% {
-    clip: rect(61px, 150px, 74px, 0); }
+    clip: rect(89px, 150px, 32px, 0); }
   70% {
-    clip: rect(122px, 150px, 91px, 0); }
+    clip: rect(42px, 150px, 89px, 0); }
   80% {
-    clip: rect(47px, 150px, 10px, 0); }
+    clip: rect(20px, 150px, 79px, 0); }
   90% {
-    clip: rect(37px, 150px, 22px, 0); }
+    clip: rect(130px, 150px, 8px, 0); }
   100% {
-    clip: rect(80px, 150px, 124px, 0); } }
+    clip: rect(48px, 150px, 119px, 0); } }
     .tracks .track#fox:hover .fox > img {
       position: absolute;
       top: 0px;
@@ -455,51 +481,51 @@ body {
 
 @keyframes frontline-anim-1 {
   0% {
-    clip: rect(3px, 150px, 123px, 0); }
+    clip: rect(65px, 150px, 43px, 0); }
   10% {
-    clip: rect(74px, 150px, 41px, 0); }
+    clip: rect(103px, 150px, 144px, 0); }
   20% {
-    clip: rect(109px, 150px, 83px, 0); }
+    clip: rect(90px, 150px, 10px, 0); }
   30% {
-    clip: rect(33px, 150px, 87px, 0); }
+    clip: rect(41px, 150px, 7px, 0); }
   40% {
-    clip: rect(98px, 150px, 43px, 0); }
+    clip: rect(13px, 150px, 115px, 0); }
   50% {
-    clip: rect(24px, 150px, 86px, 0); }
+    clip: rect(100px, 150px, 135px, 0); }
   60% {
-    clip: rect(37px, 150px, 28px, 0); }
+    clip: rect(48px, 150px, 13px, 0); }
   70% {
-    clip: rect(47px, 150px, 135px, 0); }
+    clip: rect(116px, 150px, 22px, 0); }
   80% {
-    clip: rect(25px, 150px, 65px, 0); }
+    clip: rect(54px, 150px, 85px, 0); }
   90% {
-    clip: rect(119px, 150px, 92px, 0); }
+    clip: rect(96px, 150px, 146px, 0); }
   100% {
-    clip: rect(8px, 150px, 131px, 0); } }
+    clip: rect(2px, 150px, 14px, 0); } }
 
 @keyframes frontline-anim-2 {
   0% {
-    clip: rect(128px, 150px, 65px, 0); }
+    clip: rect(17px, 150px, 29px, 0); }
   10% {
-    clip: rect(22px, 150px, 49px, 0); }
+    clip: rect(134px, 150px, 21px, 0); }
   20% {
-    clip: rect(33px, 150px, 24px, 0); }
+    clip: rect(49px, 150px, 50px, 0); }
   30% {
-    clip: rect(35px, 150px, 24px, 0); }
+    clip: rect(130px, 150px, 114px, 0); }
   40% {
-    clip: rect(137px, 150px, 35px, 0); }
+    clip: rect(49px, 150px, 14px, 0); }
   50% {
-    clip: rect(117px, 150px, 84px, 0); }
+    clip: rect(129px, 150px, 33px, 0); }
   60% {
-    clip: rect(73px, 150px, 91px, 0); }
+    clip: rect(53px, 150px, 97px, 0); }
   70% {
-    clip: rect(110px, 150px, 58px, 0); }
+    clip: rect(127px, 150px, 127px, 0); }
   80% {
-    clip: rect(10px, 150px, 93px, 0); }
+    clip: rect(123px, 150px, 2px, 0); }
   90% {
-    clip: rect(122px, 150px, 76px, 0); }
+    clip: rect(150px, 150px, 60px, 0); }
   100% {
-    clip: rect(120px, 150px, 92px, 0); } }
+    clip: rect(74px, 150px, 27px, 0); } }
     .tracks .track#frontline:hover .frontline > img {
       position: absolute;
       top: 26px;
@@ -518,51 +544,51 @@ body {
 
 @keyframes google-anim-1 {
   0% {
-    clip: rect(121px, 150px, 131px, 0); }
+    clip: rect(9px, 150px, 5px, 0); }
   10% {
-    clip: rect(125px, 150px, 112px, 0); }
+    clip: rect(10px, 150px, 22px, 0); }
   20% {
-    clip: rect(115px, 150px, 37px, 0); }
+    clip: rect(21px, 150px, 4px, 0); }
   30% {
-    clip: rect(96px, 150px, 96px, 0); }
+    clip: rect(2px, 150px, 3px, 0); }
   40% {
-    clip: rect(91px, 150px, 20px, 0); }
+    clip: rect(25px, 150px, 12px, 0); }
   50% {
-    clip: rect(35px, 150px, 19px, 0); }
+    clip: rect(4px, 150px, 8px, 0); }
   60% {
-    clip: rect(54px, 150px, 52px, 0); }
+    clip: rect(22px, 150px, 2px, 0); }
   70% {
-    clip: rect(150px, 150px, 52px, 0); }
+    clip: rect(27px, 150px, 31px, 0); }
   80% {
-    clip: rect(15px, 150px, 123px, 0); }
+    clip: rect(23px, 150px, 27px, 0); }
   90% {
-    clip: rect(16px, 150px, 44px, 0); }
+    clip: rect(12px, 150px, 26px, 0); }
   100% {
-    clip: rect(38px, 150px, 68px, 0); } }
+    clip: rect(6px, 150px, 10px, 0); } }
 
 @keyframes google-anim-2 {
   0% {
-    clip: rect(25px, 150px, 47px, 0); }
+    clip: rect(32px, 150px, 11px, 0); }
   10% {
-    clip: rect(115px, 150px, 112px, 0); }
+    clip: rect(5px, 150px, 1px, 0); }
   20% {
-    clip: rect(94px, 150px, 61px, 0); }
+    clip: rect(18px, 150px, 4px, 0); }
   30% {
-    clip: rect(71px, 150px, 5px, 0); }
+    clip: rect(28px, 150px, 15px, 0); }
   40% {
-    clip: rect(23px, 150px, 38px, 0); }
+    clip: rect(26px, 150px, 21px, 0); }
   50% {
-    clip: rect(149px, 150px, 15px, 0); }
+    clip: rect(23px, 150px, 30px, 0); }
   60% {
-    clip: rect(47px, 150px, 30px, 0); }
+    clip: rect(13px, 150px, 24px, 0); }
   70% {
-    clip: rect(91px, 150px, 138px, 0); }
+    clip: rect(19px, 150px, 12px, 0); }
   80% {
-    clip: rect(97px, 150px, 128px, 0); }
+    clip: rect(16px, 150px, 10px, 0); }
   90% {
-    clip: rect(132px, 150px, 32px, 0); }
+    clip: rect(17px, 150px, 23px, 0); }
   100% {
-    clip: rect(63px, 150px, 84px, 0); } }
+    clip: rect(25px, 150px, 16px, 0); } }
     .tracks .track#google:hover .google > img {
       position: absolute;
       top: 57px;
@@ -581,51 +607,51 @@ body {
 
 @keyframes huffpost-anim-1 {
   0% {
-    clip: rect(100px, 150px, 33px, 0); }
+    clip: rect(25px, 150px, 21px, 0); }
   10% {
-    clip: rect(45px, 150px, 38px, 0); }
+    clip: rect(4px, 150px, 17px, 0); }
   20% {
-    clip: rect(8px, 150px, 15px, 0); }
+    clip: rect(49px, 150px, 50px, 0); }
   30% {
-    clip: rect(37px, 150px, 61px, 0); }
+    clip: rect(3px, 150px, 50px, 0); }
   40% {
-    clip: rect(17px, 150px, 128px, 0); }
+    clip: rect(32px, 150px, 15px, 0); }
   50% {
-    clip: rect(14px, 150px, 54px, 0); }
+    clip: rect(37px, 150px, 43px, 0); }
   60% {
-    clip: rect(68px, 150px, 7px, 0); }
+    clip: rect(3px, 150px, 32px, 0); }
   70% {
-    clip: rect(59px, 150px, 135px, 0); }
+    clip: rect(6px, 150px, 54px, 0); }
   80% {
-    clip: rect(25px, 150px, 70px, 0); }
+    clip: rect(18px, 150px, 24px, 0); }
   90% {
-    clip: rect(39px, 150px, 123px, 0); }
+    clip: rect(13px, 150px, 22px, 0); }
   100% {
-    clip: rect(53px, 150px, 35px, 0); } }
+    clip: rect(58px, 150px, 53px, 0); } }
 
 @keyframes huffpost-anim-2 {
   0% {
-    clip: rect(39px, 150px, 65px, 0); }
+    clip: rect(30px, 150px, 1px, 0); }
   10% {
-    clip: rect(39px, 150px, 4px, 0); }
+    clip: rect(7px, 150px, 32px, 0); }
   20% {
-    clip: rect(28px, 150px, 134px, 0); }
+    clip: rect(56px, 150px, 44px, 0); }
   30% {
-    clip: rect(71px, 150px, 123px, 0); }
+    clip: rect(9px, 150px, 42px, 0); }
   40% {
-    clip: rect(114px, 150px, 101px, 0); }
+    clip: rect(42px, 150px, 24px, 0); }
   50% {
-    clip: rect(100px, 150px, 17px, 0); }
+    clip: rect(58px, 150px, 54px, 0); }
   60% {
-    clip: rect(108px, 150px, 54px, 0); }
+    clip: rect(25px, 150px, 17px, 0); }
   70% {
-    clip: rect(101px, 150px, 137px, 0); }
+    clip: rect(37px, 150px, 2px, 0); }
   80% {
-    clip: rect(76px, 150px, 135px, 0); }
+    clip: rect(48px, 150px, 39px, 0); }
   90% {
-    clip: rect(149px, 150px, 133px, 0); }
+    clip: rect(58px, 150px, 19px, 0); }
   100% {
-    clip: rect(48px, 150px, 59px, 0); } }
+    clip: rect(53px, 150px, 19px, 0); } }
     .tracks .track#huffpost:hover .huffpost > img {
       position: absolute;
       top: 44px;
@@ -644,51 +670,51 @@ body {
 
 @keyframes newrepublic-anim-1 {
   0% {
-    clip: rect(51px, 150px, 22px, 0); }
+    clip: rect(4px, 150px, 14px, 0); }
   10% {
-    clip: rect(117px, 150px, 96px, 0); }
+    clip: rect(12px, 150px, 9px, 0); }
   20% {
-    clip: rect(87px, 150px, 57px, 0); }
+    clip: rect(15px, 150px, 12px, 0); }
   30% {
-    clip: rect(35px, 150px, 125px, 0); }
+    clip: rect(4px, 150px, 11px, 0); }
   40% {
-    clip: rect(133px, 150px, 24px, 0); }
+    clip: rect(23px, 150px, 4px, 0); }
   50% {
-    clip: rect(26px, 150px, 18px, 0); }
+    clip: rect(6px, 150px, 19px, 0); }
   60% {
-    clip: rect(38px, 150px, 75px, 0); }
+    clip: rect(19px, 150px, 20px, 0); }
   70% {
-    clip: rect(85px, 150px, 109px, 0); }
+    clip: rect(12px, 150px, 10px, 0); }
   80% {
-    clip: rect(119px, 150px, 44px, 0); }
+    clip: rect(16px, 150px, 2px, 0); }
   90% {
-    clip: rect(120px, 150px, 70px, 0); }
+    clip: rect(9px, 150px, 12px, 0); }
   100% {
-    clip: rect(77px, 150px, 82px, 0); } }
+    clip: rect(11px, 150px, 9px, 0); } }
 
 @keyframes newrepublic-anim-2 {
   0% {
-    clip: rect(87px, 150px, 138px, 0); }
+    clip: rect(6px, 150px, 9px, 0); }
   10% {
-    clip: rect(42px, 150px, 91px, 0); }
+    clip: rect(12px, 150px, 2px, 0); }
   20% {
-    clip: rect(14px, 150px, 75px, 0); }
+    clip: rect(7px, 150px, 12px, 0); }
   30% {
-    clip: rect(118px, 150px, 87px, 0); }
+    clip: rect(21px, 150px, 10px, 0); }
   40% {
-    clip: rect(147px, 150px, 98px, 0); }
+    clip: rect(20px, 150px, 16px, 0); }
   50% {
-    clip: rect(25px, 150px, 92px, 0); }
+    clip: rect(23px, 150px, 3px, 0); }
   60% {
-    clip: rect(132px, 150px, 131px, 0); }
+    clip: rect(12px, 150px, 14px, 0); }
   70% {
-    clip: rect(107px, 150px, 150px, 0); }
+    clip: rect(16px, 150px, 7px, 0); }
   80% {
-    clip: rect(110px, 150px, 85px, 0); }
+    clip: rect(5px, 150px, 22px, 0); }
   90% {
-    clip: rect(110px, 150px, 74px, 0); }
+    clip: rect(12px, 150px, 4px, 0); }
   100% {
-    clip: rect(125px, 150px, 15px, 0); } }
+    clip: rect(8px, 150px, 8px, 0); } }
     .tracks .track#newrepublic:hover .newrepublic > img {
       position: absolute;
       top: 61px;
@@ -707,51 +733,51 @@ body {
 
 @keyframes nytimes-anim-1 {
   0% {
-    clip: rect(127px, 150px, 111px, 0); }
+    clip: rect(24px, 150px, 14px, 0); }
   10% {
-    clip: rect(64px, 150px, 28px, 0); }
+    clip: rect(18px, 150px, 12px, 0); }
   20% {
-    clip: rect(65px, 150px, 66px, 0); }
+    clip: rect(7px, 150px, 18px, 0); }
   30% {
-    clip: rect(29px, 150px, 65px, 0); }
+    clip: rect(8px, 150px, 24px, 0); }
   40% {
-    clip: rect(109px, 150px, 18px, 0); }
+    clip: rect(8px, 150px, 10px, 0); }
   50% {
-    clip: rect(91px, 150px, 128px, 0); }
+    clip: rect(24px, 150px, 8px, 0); }
   60% {
-    clip: rect(35px, 150px, 88px, 0); }
+    clip: rect(16px, 150px, 17px, 0); }
   70% {
-    clip: rect(85px, 150px, 56px, 0); }
+    clip: rect(6px, 150px, 6px, 0); }
   80% {
-    clip: rect(17px, 150px, 39px, 0); }
+    clip: rect(17px, 150px, 2px, 0); }
   90% {
-    clip: rect(122px, 150px, 47px, 0); }
+    clip: rect(20px, 150px, 19px, 0); }
   100% {
-    clip: rect(59px, 150px, 101px, 0); } }
+    clip: rect(23px, 150px, 8px, 0); } }
 
 @keyframes nytimes-anim-2 {
   0% {
-    clip: rect(18px, 150px, 125px, 0); }
+    clip: rect(1px, 150px, 11px, 0); }
   10% {
-    clip: rect(38px, 150px, 45px, 0); }
+    clip: rect(2px, 150px, 1px, 0); }
   20% {
-    clip: rect(29px, 150px, 57px, 0); }
+    clip: rect(21px, 150px, 16px, 0); }
   30% {
-    clip: rect(112px, 150px, 113px, 0); }
+    clip: rect(19px, 150px, 13px, 0); }
   40% {
-    clip: rect(46px, 150px, 21px, 0); }
+    clip: rect(5px, 150px, 16px, 0); }
   50% {
-    clip: rect(21px, 150px, 58px, 0); }
+    clip: rect(13px, 150px, 13px, 0); }
   60% {
-    clip: rect(66px, 150px, 132px, 0); }
+    clip: rect(2px, 150px, 23px, 0); }
   70% {
-    clip: rect(36px, 150px, 72px, 0); }
+    clip: rect(24px, 150px, 11px, 0); }
   80% {
-    clip: rect(83px, 150px, 149px, 0); }
+    clip: rect(26px, 150px, 24px, 0); }
   90% {
-    clip: rect(75px, 150px, 81px, 0); }
+    clip: rect(26px, 150px, 11px, 0); }
   100% {
-    clip: rect(81px, 150px, 47px, 0); } }
+    clip: rect(8px, 150px, 13px, 0); } }
     .tracks .track#nytimes:hover .nytimes > img {
       position: absolute;
       top: 62px;
@@ -770,51 +796,51 @@ body {
 
 @keyframes npr-anim-1 {
   0% {
-    clip: rect(83px, 150px, 117px, 0); }
+    clip: rect(3px, 150px, 20px, 0); }
   10% {
-    clip: rect(106px, 150px, 112px, 0); }
+    clip: rect(1px, 150px, 17px, 0); }
   20% {
-    clip: rect(83px, 150px, 111px, 0); }
+    clip: rect(1px, 150px, 43px, 0); }
   30% {
-    clip: rect(27px, 150px, 59px, 0); }
+    clip: rect(7px, 150px, 45px, 0); }
   40% {
-    clip: rect(60px, 150px, 59px, 0); }
+    clip: rect(24px, 150px, 14px, 0); }
   50% {
-    clip: rect(80px, 150px, 147px, 0); }
+    clip: rect(5px, 150px, 30px, 0); }
   60% {
-    clip: rect(46px, 150px, 8px, 0); }
+    clip: rect(5px, 150px, 45px, 0); }
   70% {
-    clip: rect(66px, 150px, 11px, 0); }
+    clip: rect(36px, 150px, 22px, 0); }
   80% {
-    clip: rect(3px, 150px, 136px, 0); }
+    clip: rect(11px, 150px, 47px, 0); }
   90% {
-    clip: rect(125px, 150px, 139px, 0); }
+    clip: rect(25px, 150px, 30px, 0); }
   100% {
-    clip: rect(69px, 150px, 25px, 0); } }
+    clip: rect(1px, 150px, 38px, 0); } }
 
 @keyframes npr-anim-2 {
   0% {
-    clip: rect(19px, 150px, 133px, 0); }
+    clip: rect(4px, 150px, 22px, 0); }
   10% {
-    clip: rect(43px, 150px, 53px, 0); }
+    clip: rect(5px, 150px, 34px, 0); }
   20% {
-    clip: rect(11px, 150px, 10px, 0); }
+    clip: rect(23px, 150px, 29px, 0); }
   30% {
-    clip: rect(114px, 150px, 24px, 0); }
+    clip: rect(48px, 150px, 18px, 0); }
   40% {
-    clip: rect(89px, 150px, 146px, 0); }
+    clip: rect(47px, 150px, 2px, 0); }
   50% {
-    clip: rect(103px, 150px, 89px, 0); }
+    clip: rect(9px, 150px, 30px, 0); }
   60% {
-    clip: rect(47px, 150px, 86px, 0); }
+    clip: rect(34px, 150px, 46px, 0); }
   70% {
-    clip: rect(77px, 150px, 149px, 0); }
+    clip: rect(22px, 150px, 8px, 0); }
   80% {
-    clip: rect(108px, 150px, 29px, 0); }
+    clip: rect(13px, 150px, 36px, 0); }
   90% {
-    clip: rect(66px, 150px, 91px, 0); }
+    clip: rect(43px, 150px, 14px, 0); }
   100% {
-    clip: rect(74px, 150px, 46px, 0); } }
+    clip: rect(2px, 150px, 45px, 0); } }
     .tracks .track#npr:hover .npr > img {
       position: absolute;
       top: 49px;
@@ -833,51 +859,51 @@ body {
 
 @keyframes reddit-anim-1 {
   0% {
-    clip: rect(26px, 150px, 142px, 0); }
+    clip: rect(25px, 150px, 47px, 0); }
   10% {
-    clip: rect(31px, 150px, 115px, 0); }
+    clip: rect(50px, 150px, 54px, 0); }
   20% {
-    clip: rect(87px, 150px, 93px, 0); }
+    clip: rect(11px, 150px, 16px, 0); }
   30% {
-    clip: rect(1px, 150px, 73px, 0); }
+    clip: rect(51px, 150px, 16px, 0); }
   40% {
-    clip: rect(17px, 150px, 136px, 0); }
+    clip: rect(27px, 150px, 38px, 0); }
   50% {
-    clip: rect(79px, 150px, 1px, 0); }
+    clip: rect(23px, 150px, 23px, 0); }
   60% {
-    clip: rect(134px, 150px, 135px, 0); }
+    clip: rect(5px, 150px, 22px, 0); }
   70% {
-    clip: rect(33px, 150px, 126px, 0); }
+    clip: rect(11px, 150px, 19px, 0); }
   80% {
-    clip: rect(19px, 150px, 150px, 0); }
+    clip: rect(2px, 150px, 34px, 0); }
   90% {
-    clip: rect(48px, 150px, 13px, 0); }
+    clip: rect(38px, 150px, 31px, 0); }
   100% {
-    clip: rect(47px, 150px, 135px, 0); } }
+    clip: rect(50px, 150px, 29px, 0); } }
 
 @keyframes reddit-anim-2 {
   0% {
-    clip: rect(74px, 150px, 113px, 0); }
+    clip: rect(39px, 150px, 53px, 0); }
   10% {
-    clip: rect(48px, 150px, 131px, 0); }
+    clip: rect(39px, 150px, 50px, 0); }
   20% {
-    clip: rect(77px, 150px, 55px, 0); }
+    clip: rect(16px, 150px, 34px, 0); }
   30% {
-    clip: rect(58px, 150px, 47px, 0); }
+    clip: rect(41px, 150px, 20px, 0); }
   40% {
-    clip: rect(107px, 150px, 55px, 0); }
+    clip: rect(40px, 150px, 42px, 0); }
   50% {
-    clip: rect(134px, 150px, 24px, 0); }
+    clip: rect(46px, 150px, 42px, 0); }
   60% {
-    clip: rect(91px, 150px, 57px, 0); }
+    clip: rect(8px, 150px, 45px, 0); }
   70% {
-    clip: rect(3px, 150px, 75px, 0); }
+    clip: rect(53px, 150px, 38px, 0); }
   80% {
-    clip: rect(61px, 150px, 49px, 0); }
+    clip: rect(39px, 150px, 40px, 0); }
   90% {
-    clip: rect(24px, 150px, 23px, 0); }
+    clip: rect(44px, 150px, 10px, 0); }
   100% {
-    clip: rect(148px, 150px, 61px, 0); } }
+    clip: rect(41px, 150px, 8px, 0); } }
     .tracks .track#reddit:hover .reddit > img {
       position: absolute;
       top: 44px;
@@ -896,51 +922,51 @@ body {
 
 @keyframes reddit_top-anim-1 {
   0% {
-    clip: rect(28px, 150px, 58px, 0); }
+    clip: rect(42px, 150px, 50px, 0); }
   10% {
-    clip: rect(12px, 150px, 148px, 0); }
+    clip: rect(33px, 150px, 35px, 0); }
   20% {
-    clip: rect(23px, 150px, 13px, 0); }
+    clip: rect(17px, 150px, 30px, 0); }
   30% {
-    clip: rect(136px, 150px, 50px, 0); }
+    clip: rect(46px, 150px, 18px, 0); }
   40% {
-    clip: rect(96px, 150px, 132px, 0); }
+    clip: rect(54px, 150px, 46px, 0); }
   50% {
-    clip: rect(58px, 150px, 92px, 0); }
+    clip: rect(14px, 150px, 12px, 0); }
   60% {
-    clip: rect(1px, 150px, 139px, 0); }
+    clip: rect(24px, 150px, 15px, 0); }
   70% {
-    clip: rect(144px, 150px, 141px, 0); }
+    clip: rect(35px, 150px, 33px, 0); }
   80% {
-    clip: rect(52px, 150px, 117px, 0); }
+    clip: rect(6px, 150px, 48px, 0); }
   90% {
-    clip: rect(96px, 150px, 147px, 0); }
+    clip: rect(51px, 150px, 3px, 0); }
   100% {
-    clip: rect(147px, 150px, 53px, 0); } }
+    clip: rect(52px, 150px, 31px, 0); } }
 
 @keyframes reddit_top-anim-2 {
   0% {
-    clip: rect(61px, 150px, 87px, 0); }
+    clip: rect(1px, 150px, 7px, 0); }
   10% {
-    clip: rect(18px, 150px, 56px, 0); }
+    clip: rect(9px, 150px, 7px, 0); }
   20% {
-    clip: rect(21px, 150px, 143px, 0); }
+    clip: rect(4px, 150px, 33px, 0); }
   30% {
-    clip: rect(70px, 150px, 35px, 0); }
+    clip: rect(3px, 150px, 20px, 0); }
   40% {
-    clip: rect(88px, 150px, 106px, 0); }
+    clip: rect(53px, 150px, 44px, 0); }
   50% {
-    clip: rect(105px, 150px, 9px, 0); }
+    clip: rect(46px, 150px, 34px, 0); }
   60% {
-    clip: rect(35px, 150px, 146px, 0); }
+    clip: rect(2px, 150px, 49px, 0); }
   70% {
-    clip: rect(109px, 150px, 13px, 0); }
+    clip: rect(5px, 150px, 7px, 0); }
   80% {
-    clip: rect(78px, 150px, 97px, 0); }
+    clip: rect(51px, 150px, 31px, 0); }
   90% {
-    clip: rect(42px, 150px, 118px, 0); }
+    clip: rect(42px, 150px, 26px, 0); }
   100% {
-    clip: rect(8px, 150px, 116px, 0); } }
+    clip: rect(22px, 150px, 20px, 0); } }
     .tracks .track#reddit_top:hover .reddit_top > img {
       position: absolute;
       top: 44px;
@@ -959,51 +985,51 @@ body {
 
 @keyframes wired-anim-1 {
   0% {
-    clip: rect(88px, 150px, 54px, 0); }
+    clip: rect(14px, 150px, 4px, 0); }
   10% {
-    clip: rect(58px, 150px, 103px, 0); }
+    clip: rect(10px, 150px, 11px, 0); }
   20% {
-    clip: rect(31px, 150px, 86px, 0); }
+    clip: rect(14px, 150px, 9px, 0); }
   30% {
-    clip: rect(42px, 150px, 110px, 0); }
+    clip: rect(16px, 150px, 5px, 0); }
   40% {
-    clip: rect(126px, 150px, 119px, 0); }
+    clip: rect(22px, 150px, 13px, 0); }
   50% {
-    clip: rect(141px, 150px, 10px, 0); }
+    clip: rect(6px, 150px, 23px, 0); }
   60% {
-    clip: rect(24px, 150px, 79px, 0); }
+    clip: rect(1px, 150px, 9px, 0); }
   70% {
-    clip: rect(15px, 150px, 9px, 0); }
+    clip: rect(31px, 150px, 3px, 0); }
   80% {
-    clip: rect(148px, 150px, 145px, 0); }
+    clip: rect(8px, 150px, 20px, 0); }
   90% {
-    clip: rect(12px, 150px, 120px, 0); }
+    clip: rect(7px, 150px, 6px, 0); }
   100% {
-    clip: rect(10px, 150px, 39px, 0); } }
+    clip: rect(2px, 150px, 25px, 0); } }
 
 @keyframes wired-anim-2 {
   0% {
-    clip: rect(14px, 150px, 35px, 0); }
+    clip: rect(28px, 150px, 8px, 0); }
   10% {
-    clip: rect(85px, 150px, 108px, 0); }
+    clip: rect(27px, 150px, 22px, 0); }
   20% {
-    clip: rect(81px, 150px, 150px, 0); }
+    clip: rect(15px, 150px, 23px, 0); }
   30% {
-    clip: rect(18px, 150px, 133px, 0); }
+    clip: rect(4px, 150px, 18px, 0); }
   40% {
-    clip: rect(50px, 150px, 101px, 0); }
+    clip: rect(9px, 150px, 30px, 0); }
   50% {
-    clip: rect(79px, 150px, 11px, 0); }
+    clip: rect(29px, 150px, 13px, 0); }
   60% {
-    clip: rect(102px, 150px, 73px, 0); }
+    clip: rect(25px, 150px, 31px, 0); }
   70% {
-    clip: rect(137px, 150px, 119px, 0); }
+    clip: rect(17px, 150px, 3px, 0); }
   80% {
-    clip: rect(79px, 150px, 97px, 0); }
+    clip: rect(11px, 150px, 7px, 0); }
   90% {
-    clip: rect(21px, 150px, 117px, 0); }
+    clip: rect(25px, 150px, 9px, 0); }
   100% {
-    clip: rect(149px, 150px, 96px, 0); } }
+    clip: rect(29px, 150px, 21px, 0); } }
     .tracks .track#wired:hover .wired > img {
       position: absolute;
       top: 57px;
@@ -1019,3 +1045,7 @@ body {
       animation: wired-anim-2 3s infinite linear alternate-reverse; }
     .tracks .track#wired:hover .wired img:nth-child(2) {
       opacity: 1; }
+    .tracks .track:hover {
+      border-bottom-color: red; }
+      .tracks .track:hover .track-content {
+        border-color: red; }

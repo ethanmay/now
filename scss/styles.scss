@@ -57,6 +57,9 @@
 
 body {
     margin: 0;
+    font-family: 'Lora', 'Georgia', 'Times New Roman', serif;
+    font-size: 14px;
+    color: #333;
 }
 
 /*
@@ -130,8 +133,9 @@ body {
             padding: 10px 0;
             border-top: 1px solid #A8A8A8;
             cursor: pointer;
-            font-family: 'Oswald', sans-serif, 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+            font-family: 'Oswald', 'Helvetica Neue', 'Helvetica', 'Impact', 'Arial', sans-serif;
             font-weight: lighter;
+            font-size: 18px;
 
             &:last-child {
                 border-bottom: 1px solid #A8A8A8;
@@ -162,16 +166,47 @@ body {
         overflow: scroll;
         margin-right: 10px;
         position: relative;
+        border-bottom: 1px solid #cfcfcf;
+        transition: border-bottom-color, 370ms, ease-in-out;
 
         .track-content {
             border-radius: 4px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
             background: #fafafa;
             background: rgba(250, 250, 250, 0.95);
             border: 1px solid #cfcfcf;
-            padding: 10px;
+            border-bottom: none;
+            padding: 4px;
             margin-top: 160px;
             display: block;
             width: 100%;
+            transition: border-color, 370ms, ease-in-out;
+
+            .story-ctn {
+                padding: 7px;
+                border: 1px solid #efefef;
+                border-bottom: 1px solid transparent;
+
+                &:first-child {
+                    border-top-right-radius: 3px;
+                    border-top-left-radius: 3px;
+                }
+                &:last-child {
+                    border-bottom: 1px solid #efefef;
+                    border-bottom-left-radius: 3px;
+                    border-bottom-right-radius: 3px;
+                }
+
+                &:hover {
+                    border-bottom: 1px solid;
+                    border-color: #666;
+
+                    &+ .story-ctn {
+                        border-top: 1px solid transparent;
+                    }
+                }
+            }
         }
 
         .track-link {
@@ -314,7 +349,7 @@ body {
         &#google {
             &:hover {
                 .google {
-                    @include imgGlitch( 'google', 10, 150, 150, 57, 0 );
+                    @include imgGlitch( 'google', 10, 150, 32, 57, 0 );
 
                     img:nth-child(2) {
                         opacity: 1;
@@ -325,7 +360,7 @@ body {
         &#huffpost {
             &:hover {
                 .huffpost {
-                    @include imgGlitch( 'huffpost', 10, 150, 150, 44, 0 );
+                    @include imgGlitch( 'huffpost', 10, 150, 58, 44, 0 );
 
                     img:nth-child(2) {
                         opacity: 1;
@@ -336,7 +371,7 @@ body {
         &#newrepublic {
             &:hover {
                 .newrepublic {
-                    @include imgGlitch( 'newrepublic', 10, 150, 150, 61, 0 );
+                    @include imgGlitch( 'newrepublic', 10, 150, 23, 61, 0 );
 
                     img:nth-child(2) {
                         opacity: 1;
@@ -347,7 +382,7 @@ body {
         &#nytimes {
             &:hover {
                 .nytimes {
-                    @include imgGlitch( 'nytimes', 10, 150, 150, 62, 0 );
+                    @include imgGlitch( 'nytimes', 10, 150, 27, 62, 0 );
 
                     img:nth-child(2) {
                         opacity: 1;
@@ -358,7 +393,7 @@ body {
         &#npr {
             &:hover {
                 .npr {
-                    @include imgGlitch( 'npr', 10, 150, 150, 49, 0 );
+                    @include imgGlitch( 'npr', 10, 150, 50, 49, 0 );
 
                     img:nth-child(2) {
                         opacity: 1;
@@ -369,7 +404,7 @@ body {
         &#reddit {
             &:hover {
                 .reddit {
-                    @include imgGlitch( 'reddit', 10, 150, 150, 44, 0 );
+                    @include imgGlitch( 'reddit', 10, 150, 54, 44, 0 );
 
                     img:nth-child(2) {
                         opacity: 1;
@@ -380,7 +415,7 @@ body {
         &#reddit_top {
             &:hover {
                 .reddit_top {
-                    @include imgGlitch( 'reddit_top', 10, 150, 150, 44, 0 );
+                    @include imgGlitch( 'reddit_top', 10, 150, 54, 44, 0 );
 
                     img:nth-child(2) {
                         opacity: 1;
@@ -391,12 +426,20 @@ body {
         &#wired {
             &:hover {
                 .wired {
-                    @include imgGlitch( 'wired', 10, 150, 150, 57, 0 );
+                    @include imgGlitch( 'wired', 10, 150, 31, 57, 0 );
 
                     img:nth-child(2) {
                         opacity: 1;
                     }
                 }
+            }
+        }
+
+        &:hover {
+            border-bottom-color: red;
+
+            .track-content {
+                border-color: red;
             }
         }
 	}

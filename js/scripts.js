@@ -20,10 +20,12 @@ function init() {
 
     // Set up filter buttons to show tracks & get data
     $('.buttons li').click( function(){
-        menuHandle();
-        $(this).addClass('active');
-        showTrack( $(this).data('reveal') );
-        query( $(this).data('reveal') );
+        if( !$(this).hasClass('acive') ){
+            menuHandle();
+            $(this).addClass('active');
+            showTrack( $(this).data('reveal') );
+            query( $(this).data('reveal') );
+        }
     });
 }
 
@@ -79,7 +81,7 @@ function showTrack( trackID ) {
 
 function query( network ) {
     $.ajax({
-        url: 'functions.php',
+        url: 'db/ajax.php',
         method: 'POST',
         data: {
             'network': network
@@ -89,7 +91,17 @@ function query( network ) {
         }
     }).done( function returnData( data ) {
 
-        $( '#' + network + ' .track-content' ).append( data );
-        console.log( JSON.parse( data ) );
+        if( network === 'all' ) {
+            data = JSON.parse( data );
+            $('.track').each( function(){
+                var network_data = data[ $(this).attr('id') ];
+                for( var i = 0; i < network_data.length; i++ ) {
+                    $(this).children('.track-content').append( '<div class="story-ctn">' + network_data[i]['content'] + '</div>' );
+                }
+            });
+        }
+        else {
+            $( '#' + network + ' .track-content' ).append( data );
+        }
     });
 }

@@ -24,7 +24,7 @@ function init() {
             menuHandle();
             $(this).addClass('active');
             showTrack( $(this).data('reveal') );
-            query( $(this).data('reveal') );
+            query( $(this).data('reveal'), true );
         }
     });
 }
@@ -79,12 +79,13 @@ function showTrack( trackID ) {
     $('.tracks .track:visible:first').css( 'margin-left', '10px' );
 }
 
-function query( network ) {
+function query( network, import_io ) {
     $.ajax({
         url: 'db/ajax.php',
         method: 'POST',
         data: {
-            'network': network
+            'network': network,
+            'import_io': import_io
         },
         error: function( jqxhr, textStatus, errorThrown ){
             console.log( 'jqxhr:' + jqxhr, '\ntextStatus:' + textStatus, '\nerrorThrown:' + errorThrown );

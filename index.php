@@ -30,8 +30,8 @@
                 <li data-reveal="huffpost">Huffington Post</li>
                 <li data-reveal="nytimes">New York Times</li>
                 <li data-reveal="npr">NPR</li>
-                <li data-reveal="reddit">Reddit</li>
-                <li data-reveal="reddit_top">Reddit Top</li>
+                <!-- <li data-reveal="reddit">Reddit</li>
+                <li data-reveal="reddit_top">Reddit Top</li> -->
                 <li data-reveal="wired">Wired</li>
             </ul>
         </div>
@@ -136,23 +136,23 @@
                 </a>
             </div>
 
-            <div id="reddit" class="track">
+            <!-- <div id="reddit" class="track">
                 <div class="track-content"></div>
                 <a class="track-link reddit" href="http://reddit.com" target="_blank">
                     <img src="./images/logos/reddit.png" alt="" />
                     <img src="./images/logos/reddit_glitch.png" alt="" />
                     <img src="./images/logos/reddit.png" alt="" />
                 </a>
-            </div>
+            </div> -->
 
-            <div id="reddit_top" class="track">
+            <!-- <div id="reddit_top" class="track">
                 <div class="track-content"></div>
                 <a class="track-link reddit_top" href="http://reddit.com/top" target="_blank">
                     <img src="./images/logos/reddit.png" alt="" />
                     <img src="./images/logos/reddit_glitch.png" alt="" />
                     <img src="./images/logos/reddit.png" alt="" />
                 </a>
-            </div>
+            </div> -->
 
             <div id="wired" class="track">
                 <div class="track-content"></div>

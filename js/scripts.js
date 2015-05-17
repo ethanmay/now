@@ -1,3 +1,5 @@
+var data;
+
 $(document).ready( function(){
     init();
 });
@@ -24,7 +26,7 @@ function init() {
             menuHandle();
             $(this).addClass('active');
             showTrack( $(this).data('reveal') );
-            query( $(this).data('reveal'), true );
+            query( $(this).data('reveal'), false );
         }
     });
 }
@@ -96,8 +98,8 @@ function query( network, import_io ) {
             data = JSON.parse( data );
             $('.track').each( function(){
                 var network_data = data[ $(this).attr('id') ];
-                for( var i = 0; i < network_data.length; i++ ) {
-                    $(this).children('.track-content').append( '<div class="story-ctn">' + network_data[i]['content'] + '</div>' );
+                if( network_data ) {
+                    $(this).children('.track-content').append( network_data );
                 }
             });
         }

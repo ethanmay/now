@@ -57,8 +57,9 @@
 
 body {
     margin: 0;
-    font-family: 'Lora', 'Georgia', 'Times New Roman', serif;
-    font-size: 14px;
+    font-family: 'Crimson Text', 'Georgia', 'Times New Roman', serif;
+    font-size: 20px;
+    line-height: 22px;
     color: #333;
 }
 
@@ -185,7 +186,7 @@ body {
 
             .story-ctn {
                 padding: 7px;
-                border: 1px solid #efefef;
+                border: 1px solid #cfcfcf;
                 border-bottom: 1px solid transparent;
 
                 &:first-child {
@@ -193,7 +194,7 @@ body {
                     border-top-left-radius: 3px;
                 }
                 &:last-child {
-                    border-bottom: 1px solid #efefef;
+                    border-bottom: 1px solid #afafaf;
                     border-bottom-left-radius: 3px;
                     border-bottom-right-radius: 3px;
                 }
@@ -205,6 +206,23 @@ body {
                     &+ .story-ctn {
                         border-top: 1px solid transparent;
                     }
+                }
+
+                p {
+                    margin: 0;
+                }
+
+                .desc-ctn {
+                    p {
+                        font-size: 16px;
+                        font-style: italic;
+                        color: #8e8e8e;
+                    }
+                }
+
+                img {
+                    width: 100%;
+                    height: auto;
                 }
             }
         }

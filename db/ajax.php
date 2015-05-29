@@ -24,14 +24,27 @@ if( $_REQUEST["import_io"] == 'true' ) {
 	foreach( $results as $result ) {
 		$headline_text = $result->{'headline/_text'};
 
-		for( $i = 0; $i < count( $headline_text ); $i++ ) {
+		if( is_array( $headline_text ) ) {
 
+			for( $i = 0; $i < count( $headline_text ); $i++ ) {
+
+				// if headline word count is less than 2
+				if( count( explode( ' ', $headline_text[$i] ) ) > 2 ) {
+
+					// if headline doesn't contain the following words
+					if( preg_match( '[\/photo\/|\/photos\/|\/video\/|\/videos\/|\/posttv\/]', $result->headline[$i] ) == 0 ) {
+						store_news_by_url( $result->headline[$i], $network_id );
+					}
+				}
+			}
+		}
+		else {
 			// if headline word count is less than 2
-			if( count( explode( ' ', $headline_text[$i] ) ) > 2 ) {
+			if( count( explode( ' ', $headline_text ) ) > 2 ) {
 
 				// if headline doesn't contain the following words
-				if( preg_match( '[\/photo\/|\/photos\/|\/video\/|\/videos\/|\/posttv\/]', $result->headline[$i] ) == 0 ) {
-					store_news_by_url( $result->headline[$i], $network_id );
+				if( preg_match( '[\/photo\/|\/photos\/|\/video\/|\/videos\/|\/posttv\/]', $result->headline ) == 0 ) {
+					store_news_by_url( $result->headline, $network_id );
 				}
 			}
 		}

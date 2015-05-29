@@ -176,7 +176,7 @@ function store_news_by_url( $news_link, $network_id ) {
 
 	if( $news_link ) {
 
-		include_once '../alchemy/alchemyapi.php';
+		include_once './alchemyapi.php';
 
 		$alchemyapi = new AlchemyAPI();
 
@@ -283,7 +283,7 @@ function store_news_by_url( $news_link, $network_id ) {
 				if( $i == 1 ) {
 					$text = $labels[$i];
 					$text = $db->escape( $text );
-					$parent_id = $db->get_var( "SELECT id FROM taxonomies WHERE ancestor_id = 0 AND content = '$text'" );
+					$parent_id = $db->get_var( "SELECT id FROM taxonomies WHERE content = '$text'" );
 					if( !$parent_id ) {
 						$db->query( "INSERT INTO taxonomies( content ) VALUES ( '$text' )" );
 						$parent_id = $db->insert_id;

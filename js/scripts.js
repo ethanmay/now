@@ -22,11 +22,27 @@ function init() {
 
     // Set up filter buttons to show tracks & get data
     $('.buttons li').click( function(){
+
         if( !$(this).hasClass('acive') ){
             menuHandle();
             $(this).addClass('active');
             showTrack( $(this).data('reveal') );
-            query( $(this).data('reveal'), false );
+
+            if( $('#admin').length > 0 ){
+
+                if( $(this).data('reveal') === 'all' ) {
+
+                    $('.tracks .track').each( function(){
+                        query( $(this).attr('id'), true );
+                    });
+                }
+                else {
+                    query( $(this).data('reveal'), true );
+                }
+            }
+            else {
+                query( $(this).data('reveal'), false );
+            }
         }
     });
 }
@@ -93,18 +109,6 @@ function query( network, import_io ) {
             console.log( 'jqxhr:' + jqxhr, '\ntextStatus:' + textStatus, '\nerrorThrown:' + errorThrown );
         }
     }).done( function returnData( data ) {
-
-        if( network === 'all' ) {
-            data = JSON.parse( data );
-            $('.track').each( function(){
-                var network_data = data[ $(this).attr('id') ];
-                if( network_data ) {
-                    $(this).children('.track-content').append( network_data );
-                }
-            });
-        }
-        else {
-            $( '#' + network + ' .track-content' ).append( data );
-        }
+        $( '#' + network + ' .track-content' ).append( data );
     });
 }

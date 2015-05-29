@@ -6,26 +6,36 @@ include_once "functions.php";
 $network = $_REQUEST["network"];
 
 if( $_REQUEST["import_io"] == 'true' ) {
-	// query import.io
-
-	$news = import_news_by_network( $network );
-
-	if( $network == 'all' ){
-
-		store_all_news( $news );
-	}
-	else {
-		// if new network, create network in db
-		$network_id = $db->get_var( "SELECT id FROM networks WHERE network = '$network'" );
-		if( !$network_id ) {
-			$db->query( "INSERT INTO networks( network ) VALUES ( '$network' )" );
-			$network_id = $db->insert_id;
-		}
-
-		store_news_by_network( $news->results, $network_id );
-	}
 	
-	// get_sentiments( $parsed );
+	// if new network, create network in db
+	$network_id = $db->get_var( "SELECT id FROM networks WHERE network = '$network'" );
+	if( !$network_id ) {
+		$db->query( "INSERT INTO networks( network ) VALUES ( '$network' )" );
+		$network_id = $db->insert_id;
+	}
+
+	// query import.io
+	$news = import_news_by_network( $network );
+	
+	// convert result to object
+	$results = (object) $news->results;
+
+	// loop through results and store headline url
+	foreach( $results as $result ) {
+		$headline_text = $result->{'headline/_text'};
+
+		for( $i = 0; $i < count( $headline_text ); $i++ ) {
+
+			// if headline word count is less than 2
+			if( count( explode( ' ', $headline_text[$i] ) ) > 2 ) {
+
+				// if headline doesn't contain the following words
+				if( preg_match( '[\/photo\/|\/photos\/|\/video\/|\/videos\/|\/posttv\/]', $result->headline[$i] ) == 0 ) {
+					store_news_by_url( $result->headline[$i], $network_id );
+				}
+			}
+		}
+	}
 }
 else {
 

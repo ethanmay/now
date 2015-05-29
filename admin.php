@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>NOW - News Overtone Watch</title>
+        <title>NOW Admin</title>
         <link rel="stylesheet" href="./css/styles.css">
         <link href='//fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Crimson+Text:600,400,400italic' rel='stylesheet' type='text/css'>
@@ -9,6 +9,7 @@
         <link rel="icon" type="image/png" href="./favicon.ico">
     </head>
     <body>
+        <div id="admin"></div>
         <div id="reveal-menu">
             <div class="span-ctn">
                 <span></span>

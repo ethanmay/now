@@ -41,22 +41,6 @@ function import_news_by_network( $network ) {
 
 	switch( $network ) {
 
-		case 'all':
-			$result['abc'] = query_import_io( "590a4436-2be2-4e6b-9686-b17e8db00b29", array( "webpage/url" => "http://abcnews.go.com/" ) );
-			$result['aljazeera'] = query_import_io( "6c05b191-b04c-458d-aa58-ec6f0b023d75", array( "webpage/url" => "http://america.aljazeera.com/" ) );
-			$result['bbc'] = query_import_io( "0d6d38e8-c537-428f-82d4-28ea5716abf5", array( "webpage/url" => "http://www.bbc.com/news" ) );
-			$result['cnn'] = query_import_io( "c6d0891f-9c20-4fe8-aba4-c7b870af899f", array( "webpage/url" => "http://www.cnn.com/" ) );
-			$result['fox'] = query_import_io( "f675c84d-6805-4e5f-86c1-06c77fae846d", array( "webpage/url" => "http://www.foxnews.com/" ) );
-			$result['google'] = query_import_io( "56104162-a61e-4656-810f-1ff839e0f6cf", array( "webpage/url" => "http://news.google.com/" ) );
-			$result['frontline'] = query_import_io( "216ad870-d7af-400e-812b-bc6f19b8b79c", array( "webpage/url" => "http://www.pbs.org/wgbh/pages/frontline/" ) );
-			$result['newrepublic'] = query_import_io( "eb09b2ab-d56a-4820-8eb7-58fc6a1e8e3c", array( "webpage/url" => "http://www.newrepublic.com/" ) );
-			$result['huffpost'] = query_import_io( "1643e164-c2d8-4e32-a28c-bc1cbd34f11e", array( "webpage/url" => "http://www.huffingtonpost.com/" ) );
-			$result['nytimes'] = query_import_io( "52fad557-8a42-4213-85f8-6ef99e0fb272", array( "webpage/url" => "http://www.nytimes.com/" ) );
-			$result['npr'] = query_import_io( "4c4f7281-0e4e-4048-b0ed-97ffbf60ec8c", array( "webpage/url" => "http://www.npr.org/" ) );
-			// $result['reddit'] = query_import_io( "f516096f-4d02-4aab-84bb-1e2f7687360d", array( "webpage/url" => "http://www.reddit.com/" ) );
-			// $result['reddit_top'] = query_import_io( "24db1886-24be-488e-a803-877b8fe056f4", array( "webpage/url" => "http://www.reddit.com/top/" ) );
-			$result['wired'] = query_import_io( "dea122bd-4535-473e-959a-604f9398d57c", array( "webpage/url" => "http://www.wired.com/" ) );
-			break;
 		case 'abc':
 			$result = query_import_io( "590a4436-2be2-4e6b-9686-b17e8db00b29", array( "webpage/url" => "http://abcnews.go.com/" ) );
 			break;
@@ -90,17 +74,26 @@ function import_news_by_network( $network ) {
 		case 'npr':
 			$result = query_import_io( "4c4f7281-0e4e-4048-b0ed-97ffbf60ec8c", array( "webpage/url" => "http://www.npr.org/" ) );
 			break;
+		case 'usatoday':
+			$result = query_import_io( "6a99efdf-2ed6-4c8d-90a0-8d6179061c3d", array( "webpage/url" => "http://www.usatoday.com/" ) );
+			break;
+		case 'msnbc':
+			$result = query_import_io( "34497626-6da0-480a-a813-e763ad42a2d9", array( "webpage/url" => "http://www.msnbc.com/" ) );
+			break;
+		case 'wpost':
+			$result = query_import_io( "1f1590c4-8d67-43c6-974c-67b9166102b1", array( "webpage/url" => "http://www.washingtonpost.com/" ) );
+			break;
 		// case 'reddit':
 		// 	$result = query_import_io( "f516096f-4d02-4aab-84bb-1e2f7687360d", array( "webpage/url" => "http://www.reddit.com/" ) );
 		// 	break;
 		// case 'reddit_top':
 		// 	$result = query_import_io( "24db1886-24be-488e-a803-877b8fe056f4", array( "webpage/url" => "http://www.reddit.com/top/" ) );
 		// 	break;
-		case 'wired':
-			$result = query_import_io( "dea122bd-4535-473e-959a-604f9398d57c", array( "webpage/url" => "http://www.wired.com/" ) );
-			break;
+		// case 'wired':
+		// 	$result = query_import_io( "dea122bd-4535-473e-959a-604f9398d57c", array( "webpage/url" => "http://www.wired.com/" ) );
+		// 	break;
 		default:
-			error_log( 'ya dun fucked up' );
+			error_log( 'way to break it' );
 			break;
 	}
 
@@ -120,22 +113,6 @@ function get_news_by_network( $network ) {
 
 	switch( $network ) {
 
-		case 'all':
-			$news['abc'] = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 1 LIMIT 30" );
-			$news['aljazeera'] = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 2 LIMIT 30" );
-			$news['bbc'] = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 3 LIMIT 30" );
-			$news['cnn'] = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 4 LIMIT 30" );
-			$news['fox'] = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 5 LIMIT 30" );
-			$news['google'] = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 6 LIMIT 30" );
-			$news['frontline'] = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 7 LIMIT 30" );
-			$news['newrepublic'] = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 8 LIMIT 30" );
-			$news['huffpost'] = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 9 LIMIT 30" );
-			$news['nytimes'] = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 10 LIMIT 30" );
-			$news['npr'] = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 11 LIMIT 30" );
-			// $news['reddit'] = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 15 LIMIT 30" );
-			// $news['reddit_top'] = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 16 LIMIT 30" );
-			$news['wired'] = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 12 LIMIT 30" );
-			break;
 		case 'abc':
 			$news = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 1 LIMIT 30" );
 			break;
@@ -175,11 +152,11 @@ function get_news_by_network( $network ) {
 		// case 'reddit_top':
 		// 	$news = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 16 LIMIT 30" );
 		// 	break;
-		case 'wired':
-			$news = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 12 LIMIT 30" );
-			break;
+		// case 'wired':
+		// 	$news = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 12 LIMIT 30" );
+		// 	break;
 		default:
-			error_log( "my bad" );
+			error_log( 'whoops' );
 			break;
 	}
 
@@ -190,79 +167,150 @@ function get_news_by_network( $network ) {
  * store_news_by_network
  * Store news results in db.
  * 
- * @param  array( object )
+ * @param  string
  * @param  int
  */
-function store_news_by_network( $news, $network_id ) {
+function store_news_by_url( $news_link, $network_id ) {
 
 	global $db;
 
-	if( $news ) {
+	if( $news_link ) {
 
-		foreach( $news as $story ) {
+		include_once '../alchemy/alchemyapi.php';
 
-			$story = (array) $story;
-			$headline = $story[ 'headline' ];
-			$description = $story[ 'description' ];
-			$image = $story[ 'image' ];
-			$image_alt = $story[ 'image/_alt' ];
+		$alchemyapi = new AlchemyAPI();
 
-			// Insert headlines into db
-			if( is_array( $headline ) ) {
+		$options = array(
+			'extract' => 'title, pub-date, page-image, taxonomy, entity, keyword, concept',
+			'linkedData' => 0,
+			'quotations' => 1,
+			'sentiment'  => 1
+		);
 
-				$num_headlines = count( $headline );
+		$alchemy = $alchemyapi->combined( 'url', $news_link, $options );
+		$data = (object) $alchemy;
 
-				for( $i = 0; $i < $num_headlines; $i++ ) {
-					$content = $db->escape( $headline[ $i ] );
-					$db->query( "INSERT INTO headlines( network_id, content ) VALUES ( $network_id, '$content' )" );
-				}
+		// Title
+		$title = $data->title;
+		$title = $db->escape( $title );
+
+		// Publication Date
+		$pub_date = $data->publicationDate['date'];
+		$pub_date = strtotime( $pub_date );
+		$pub_date = date( 'Y-m-d H:i:s', $pub_date );
+
+		// Overall Sentiment
+		$sentiment = $alchemyapi->sentiment( 'url', $news_link, null );
+		$sentiment = (object) $sentiment;
+		$sentiment = round( $sentiment->docSentiment['score'], 2 );
+
+		$db->query( "INSERT INTO headlines( network_id, url, content, sentiment, date_published ) VALUES ( '$network_id', '$news_link', '$title', '$sentiment', '$pub_date' )" );
+		$headline_id = $db->insert_id;
+
+		// Image
+		$image = $data->image;
+		$image = $db->escape( $image );
+		$db->query( "INSERT INTO images( headline_id, url ) VALUES ( '$headline_id', '$image' )" );
+
+		// Keywords
+		$keywords = $data->keywords;
+		foreach( $keywords as $keyword ) {
+			$keyword = (object) $keyword;
+			$text = $keyword->text;
+			$text = $db->escape( $text );
+			$relevance = round( $keyword->relevance, 2 );
+			$sentiment = round( $keyword->sentiment['score'], 2 );
+			$keyword_id = $db->get_var( "SELECT id FROM keywords WHERE content = '$text'" );
+			if( !$keyword_id ) {
+				$db->query( "INSERT INTO keywords( content ) VALUES ( '$text' )" );
+				$keyword_id = $db->insert_id;
 			}
-			else {
-				$headline = $db->escape( $headline );
+			$db->query( "INSERT INTO link_keywords( headline_id, keyword_id, relevance, sentiment ) VALUES ( '$headline_id', '$keyword_id', '$relevance', '$sentiment' )" );
+		}
 
-				if( $description ) {
-					$description = $db->escape( $description );
-					$db->query( "INSERT INTO headlines( network_id, content, description ) VALUES ( $network_id, '$headline', '$description' )" );
-					unset( $description );
-				}
-				else {
-					$db->query( "INSERT INTO headlines( network_id, content ) VALUES ( $network_id, '$headline' )" );
-				}
-
-				$headline_id = $db->insert_id;
+		// Concepts
+		$concepts = $data->concepts;
+		foreach( $concepts as $concept ) {
+			$concept = (object) $concept;
+			$text = $concept->text;
+			$text = $db->escape( $text );
+			$relevance = round( $concept->relevance, 2 );
+			$concept_id = $db->get_var( "SELECT id FROM concepts WHERE content = '$text'" );
+			if( !$concept_id ) {
+				$db->query( "INSERT INTO concepts( content ) VALUES ( '$text' )" );
+				$concept_id = $db->insert_id;
 			}
+			$db->query( "INSERT INTO link_concepts( headline_id, concept_id, relevance ) VALUES ( '$headline_id', '$concept_id', '$relevance' )" );
+		}
 
-			// Insert images into db
-			if( $image ) {
+		// Entities
+		$entities = $data->entities;
+		foreach( $entities as $entity ) {
+			$entity = (object) $entity;
+			$text = $entity->text;
+			$text = $db->escape( $text );
+			$count = $entity->count;
+			$type = $entity->type;
+			$type = $db->escape( $type );
+			$relevance = round( $entity->relevance, 2 );
+			$sentiment = round( $entity->sentiment['score'], 2 );
+			$entity_id = $db->get_var( "SELECT id FROM entities WHERE content = '$text'" );
+			if( !$entity_id ) {
+				$db->query( "INSERT INTO entities( type, content ) VALUES ( '$type', '$text' )" );
+				$entity_id = $db->insert_id;
+			}
+			$db->query( "INSERT INTO link_entities( headline_id, entity_id, appear_count, relevance, sentiment ) VALUES ( '$headline_id', '$entity_id', '$count', '$relevance', '$sentiment' )" );
 
-				if( $image != 'http://a.abcnews.com/assets/images/v3/pixel_eee.gif' ) {
-					$image = $db->escape( $image );
-					$image_alt = $db->escape( $image_alt );
-					$db->query( "INSERT INTO images( headline_id, image, image_alt ) VALUES ( $headline_id, '$image', '$image_alt' )" );
-					unset( $image );
-				}
+			// Quotations
+			if( $entity->quotations ) {
+				$quotation = (object) $entity->quotations[0];
+				$text = $quotation->quotation;
+				$text = $db->escape( $text );
+				$sentiment = round( $quotation->sentiment['score'], 2 );
+				$db->query( "INSERT INTO quotations( headline_id, content, sentiment ) VALUES ( '$headline_id', '$text', '$sentiment' )" );
 			}
 		}
-	}
 
-	return false;
-}
+		// Taxonomies
+		$taxonomies = $data->taxonomy;
+		foreach( $taxonomies as $taxonomy ) {
+			$taxonomy = (object) $taxonomy;
 
-/**
- * get_sentiments
- * Get sentiments from AlchemyAPI.
- * 
- * @param  array
- * @return array
- */
-function get_sentiments( $news ) {
+			// Heirarchical taxonomies
+			$labels = explode( '/', $taxonomy->label );
+			for( $i = 0; $i < count( $labels ); $i++ ) {
+				// parent
+				if( $i == 1 ) {
+					$text = $labels[$i];
+					$text = $db->escape( $text );
+					$parent_id = $db->get_var( "SELECT id FROM taxonomies WHERE ancestor_id = 0 AND content = '$text'" );
+					if( !$parent_id ) {
+						$db->query( "INSERT INTO taxonomies( content ) VALUES ( '$text' )" );
+						$parent_id = $db->insert_id;
+					}
+				}
+				// children
+				else if( $i > 1 ) {
+					$text = $labels[$i];
+					$text = $db->escape( $text );
+					$child_id = $db->get_var( "SELECT id FROM taxonomies WHERE ancestor_id = '$parent_id' AND content = '$text'" );
+					if( !$child_id ) {
+						$db->query( "INSERT INTO taxonomies( ancestor_id, content ) VALUES ( '$parent_id', '$text' )" );
+						$child_id = $db->insert_id;
+						$parent_id = $child_id;
+					}
+				}
+			}
 
-	require_once( './alchemy/alchemyapi.php' );
-	$alchemyapi = new AlchemyAPI();
+			$relevance = round( $taxonomy->score, 2 );
 
-	while( $i++ < count( $news ) ) {
-
-		echo( $news[ $i ] . ' => ' . $alchemyapi->sentiment('text', $news[ $i ], null) );
+			if( !$child_id ) {
+				$db->query( "INSERT INTO link_taxonomies( headline_id, taxonomy_id, relevance ) VALUES ( '$headline_id', '$parent_id', '$relevance' )" );
+			}
+			else {
+				$db->query( "INSERT INTO link_taxonomies( headline_id, taxonomy_id, relevance ) VALUES ( '$headline_id', '$child_id', '$relevance' )" );
+			}
+		}
 	}
 
 	return false;

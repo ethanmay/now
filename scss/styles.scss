@@ -286,16 +286,31 @@ body {
                     top: 49px;
                 }
             }
-            &.reddit, &.reddit_top {
+            &.usatoday {
                 img {
-                    top: 44px;
+                    top: 37px;
                 }
             }
-            &.wired {
+            &.msnbc {
                 img {
-                    top: 57px;
+                    top: 56px;
                 }
             }
+            &.wpost {
+                img {
+                    top: 62px;
+                }
+            }
+            // &.reddit, &.reddit_top {
+            //     img {
+            //         top: 44px;
+            //     }
+            // }
+            // &.wired {
+            //     img {
+            //         top: 57px;
+            //     }
+            // }
         }
 
         &#abc {
@@ -419,10 +434,10 @@ body {
                 }
             }
         }
-        &#reddit {
+        &#usatoday {
             &:hover {
-                .reddit {
-                    @include imgGlitch( 'reddit', 10, 150, 54, 44, 0 );
+                .usatoday {
+                    @include imgGlitch( 'usatoday', 10, 150, 78, 37, 0 );
 
                     img:nth-child(2) {
                         opacity: 1;
@@ -430,10 +445,10 @@ body {
                 }
             }
         }
-        &#reddit_top {
+        &#msnbc {
             &:hover {
-                .reddit_top {
-                    @include imgGlitch( 'reddit_top', 10, 150, 54, 44, 0 );
+                .msnbc {
+                    @include imgGlitch( 'msnbc', 10, 150, 28, 56, 0 );
 
                     img:nth-child(2) {
                         opacity: 1;
@@ -441,10 +456,10 @@ body {
                 }
             }
         }
-        &#wired {
+        &#wpost {
             &:hover {
-                .wired {
-                    @include imgGlitch( 'wired', 10, 150, 31, 57, 0 );
+                .wpost {
+                    @include imgGlitch( 'wpost', 10, 150, 23, 62, 0 );
 
                     img:nth-child(2) {
                         opacity: 1;
@@ -452,6 +467,39 @@ body {
                 }
             }
         }
+        // &#reddit {
+        //     &:hover {
+        //         .reddit {
+        //             @include imgGlitch( 'reddit', 10, 150, 54, 44, 0 );
+
+        //             img:nth-child(2) {
+        //                 opacity: 1;
+        //             }
+        //         }
+        //     }
+        // }
+        // &#reddit_top {
+        //     &:hover {
+        //         .reddit_top {
+        //             @include imgGlitch( 'reddit_top', 10, 150, 54, 44, 0 );
+
+        //             img:nth-child(2) {
+        //                 opacity: 1;
+        //             }
+        //         }
+        //     }
+        // }
+        // &#wired {
+        //     &:hover {
+        //         .wired {
+        //             @include imgGlitch( 'wired', 10, 150, 31, 57, 0 );
+
+        //             img:nth-child(2) {
+        //                 opacity: 1;
+        //             }
+        //         }
+        //     }
+        // }
 
         &:hover {
             border-bottom-color: red;

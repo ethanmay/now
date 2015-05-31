@@ -46,6 +46,26 @@
 }
 
 /*
+    
+    Clearfix
+
+*/
+// For modern browsers
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+//For IE 6/7 only
+.cf {
+    *zoom: 1;
+}
+
+/*
 	
 	General Styles
 
@@ -61,6 +81,28 @@ body {
     font-size: 20px;
     line-height: 22px;
     color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+
+    &:hover {
+        color: red;
+    }
+}
+
+.qtip ul {
+    margin: 0;
+    padding-left: 15px;
+}
+
+.negative {
+    color: red;
+}
+
+.positive {
+    color: limegreen;
 }
 
 /*
@@ -114,7 +156,7 @@ body {
 
 .buttons {
     height: 100%;
-    padding: 20px;
+    padding: 10px;
     background: #fff;
     padding-bottom: 0;
     position: fixed;
@@ -168,7 +210,6 @@ body {
         margin-right: 10px;
         position: relative;
         border-bottom: 1px solid #cfcfcf;
-        transition: border-bottom-color, 370ms, ease-in-out;
 
         .track-content {
             border-radius: 4px;
@@ -182,11 +223,10 @@ body {
             margin-top: 160px;
             display: block;
             width: 100%;
-            transition: border-color, 370ms, ease-in-out;
 
             .story-ctn {
                 padding: 7px;
-                border: 1px solid #cfcfcf;
+                border: 1px solid #ccc;
                 border-bottom: 1px solid transparent;
 
                 &:first-child {
@@ -194,35 +234,159 @@ body {
                     border-top-left-radius: 3px;
                 }
                 &:last-child {
-                    border-bottom: 1px solid #afafaf;
+                    border-bottom: 1px solid #ccc;
                     border-bottom-left-radius: 3px;
                     border-bottom-right-radius: 3px;
                 }
 
                 &:hover {
                     border-bottom: 1px solid;
-                    border-color: #666;
+                    border-color: #1681FB;
 
                     &+ .story-ctn {
                         border-top: 1px solid transparent;
                     }
                 }
 
+                &.active {
+                    border-color: #1681FB;
+                }
+
                 p {
                     margin: 0;
                 }
 
-                .desc-ctn {
-                    p {
-                        font-size: 16px;
-                        font-style: italic;
-                        color: #8e8e8e;
+                .date {
+                    text-align: center;
+                    margin-bottom: 5px;
+                    padding-bottom: 2px;
+                    border-bottom: 1px solid #ccc;
+                }
+
+                .image-ctn {
+                    position: relative;
+
+                    .overall-sentiment {
+                        position: absolute;
+                        width: 48px;
+                        height: 48px;
+                        text-align: center;
+                        line-height: 42px;
+                        background: #fff;
+                        border-radius: 50%;
+                        top: -4px;
+                        left: -4px;
+                        cursor: default;
+
+                        &.negative {
+                            border: 3px solid red;
+                        }
+                        &.neutral {
+                            border: 3px solid #ccc;
+                        }
+                        &.positive {
+                            border: 3px solid limegreen;
+                        }
                     }
                 }
 
                 img {
                     width: 100%;
                     height: auto;
+                    border-radius: 4px;
+                }
+
+                .meta {
+                    list-style: none;
+                    margin: 5px 0 0;
+                    padding: 0;
+                    border-top: 1px solid #ccc;
+
+                    > li {
+                        float: left;
+                        padding: 3px 0;
+                        width: 20%;
+                        text-align: center;
+                        line-height: 16px;
+                        border-top: 2px solid transparent;
+                        border-bottom: 1px solid transparent;
+                        cursor: pointer;
+                        position: relative;
+
+                        svg {
+                            width: 32px;
+                            height: 32px;
+                            fill: #333;
+                        }
+
+                        .count {
+                            position: absolute;
+                            height: 32px;
+                            line-height: 32px;
+                            overflow: hidden;
+                        }
+
+                        &:hover {
+                            border-top: 2px solid #ccc;
+
+                            .count {
+                                width: 150px;
+                            }
+
+                            svg {
+                                fill: #1681FB;
+                            }
+                        }
+
+                        &.active {
+                            border-top: 2px solid #ccc;
+                            border-bottom: 1px solid #1681FB;
+
+                            svg {
+                                fill: #1681FB;
+                            }
+
+                            &::after {
+                                content: '';
+                                width: 0;
+                                height: 0;
+                                border-left: 5px solid transparent;
+                                border-right: 5px solid transparent;
+                                border-top: 5px solid #1681FB;
+                                position: absolute;
+                                left: 50%;
+                                margin-left: -5px;
+                                bottom: -6px;
+                            }
+                        }
+
+                        ul {
+                            display: none;
+                        }
+                    }
+                }
+
+                .meta-expanded {
+                    display: none;
+
+                    ul {
+                        margin: 5px 0;
+                        padding: 0;
+                        list-style: none;
+
+                        li {
+                            padding: 5px 10px;
+                            border-top: 1px solid #ccc;
+
+                            &:first-child {
+                                border-top: none;
+                            }
+
+                            &:hover {
+                                cursor: help;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -509,4 +673,17 @@ body {
             }
         }
 	}
+}
+
+footer {
+    position: absolute;
+    bottom: 24px;
+    text-align: center;
+    width: 100%;
+    height: 4px;
+    z-index: 0;
+
+    i {
+        font-size: 1px;
+    }
 }

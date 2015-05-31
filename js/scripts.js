@@ -97,6 +97,67 @@ function showTrack( trackID ) {
     $('.tracks .track:visible:first').css( 'margin-left', '10px' );
 }
 
+function init_tooltips() {
+    // Set up tooltips
+    $('.tool-right[data-tooltip!=""]').qtip({
+        content: {
+            attr: 'data-tooltip'
+        },
+        position: {
+            my: 'left center',
+            at: 'right center'
+        },
+        style: {
+            classes: 'qtip-bootstrap'
+        }
+    });
+    $('.tool-bottom[data-tooltip!=""]').qtip({
+        content: {
+            attr: 'data-tooltip'
+        },
+        position: {
+            my: 'top center',
+            at: 'bottom center'
+        },
+        style: {
+            classes: 'qtip-bootstrap'
+        }
+    });
+}
+
+function init_meta() {
+    // Prepare meta info hover
+    $('.meta > li').click( function() {
+        var meta_id = $(this).attr('id'),
+            meta_info;
+
+        $(this).siblings().each( function(){
+            if( $(this).hasClass('active') ) {
+                var rmv_meta_id = $(this).attr('id');
+                $(this).removeClass('active');
+                meta_info = $('.story-ctn.active .meta-expanded').hide().children('.' + rmv_meta_id).remove();
+                $(this).append( meta_info );
+                init_tooltips();
+            }
+        });
+
+        if( $(this).hasClass('active') ) {
+            $(this).removeClass('active');
+            meta_info = $('.story-ctn.active .meta-expanded').hide().children('.' + meta_id).remove();
+            $(this).append( meta_info );
+            $('.story-ctn.active').removeClass('active');
+        }
+        else {
+            $('.story-ctn.active').removeClass('active');
+            $(this).parents('.story-ctn').addClass('active');
+            $(this).addClass('active');
+            meta_info = $(this).children('.' + meta_id).remove();
+            $('.story-ctn.active .meta-expanded').append( meta_info ).show();
+            init_tooltips();
+        }
+    });
+}
+
 function query( network, import_io ) {
     $.ajax({
         url: 'db/ajax.php',
@@ -110,5 +171,7 @@ function query( network, import_io ) {
         }
     }).done( function returnData( data ) {
         $( '#' + network + ' .track-content' ).append( data );
+        init_meta();
+        init_tooltips();
     });
 }

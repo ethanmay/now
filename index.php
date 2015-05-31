@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>NOW - News Overtone Watch</title>
-        <link rel="stylesheet" href="./css/styles.css">
+        <title>NOW | News Overtone Watch</title>
+        <link rel="icon" type="image/png" href="./favicon.png?v=2">
+        <link rel="icon" type="image/png" href="./favicon.ico?v=2">
         <link href='//fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Crimson+Text:600,400,400italic' rel='stylesheet' type='text/css'>
-        <link rel="icon" type="image/png" href="./favicon.png">
-        <link rel="icon" type="image/png" href="./favicon.ico">
+        <link rel="stylesheet" href="./bower_components/qtip2/jquery.qtip.min.css">
+        <link rel="stylesheet" href="./css/styles.css">
     </head>
     <body>
         <div id="reveal-menu">
@@ -153,11 +154,15 @@
                 </a>
             </div>
         </div>
+        <footer>
+            <i>Who is this who darkens counsel by words without knowledge?</i>
+        </footer>
     </body>
     <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
     <script src="./bower_components/jquery/dist/jquery.min.js"></script>
     <!-- <script src="http://cdn.import.io/js/2.0.0/importio.js"></script> -->
     <script src="./bower_components/import.io/importio.js"></script>
     <script src="./js/prefixfree.min.js"></script>
+    <script src="./bower_components/qtip2/jquery.qtip.min.js"></script>
     <script src="./js/scripts.js"></script>
 </html>

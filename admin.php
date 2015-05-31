@@ -5,8 +5,8 @@
         <link rel="stylesheet" href="./css/styles.css">
         <link href='//fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Crimson+Text:600,400,400italic' rel='stylesheet' type='text/css'>
-        <link rel="icon" type="image/png" href="./favicon.png">
-        <link rel="icon" type="image/png" href="./favicon.ico">
+        <link rel="icon" type="image/png" href="./favicon.png?v=2">
+        <link rel="icon" type="image/png" href="./favicon.ico?v=2">
     </head>
     <body>
         <div id="admin"></div>

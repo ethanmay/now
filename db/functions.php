@@ -104,67 +104,20 @@ function import_news_by_network( $network ) {
  * get_news_by_network
  * Get all news results from DB.
  * 
- * @param  string
+ * @param  int
  * @return array( object )
  */
-function get_news_by_network( $network ) {
+function get_news_by_network( $network_id ) {
 	
 	global $db;
 
-	switch( $network ) {
-
-		case 'abc':
-			$news = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 1 LIMIT 30" );
-			break;
-		case 'aljazeera':
-			$news = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 2 LIMIT 30" );
-			break;
-		case 'bbc':
-			$news = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 3 LIMIT 30" );
-			break;
-		case 'cnn':
-			$news = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 4 LIMIT 30" );
-			break;
-		case 'fox':
-			$news = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 5 LIMIT 30" );
-			break;
-		case 'google':
-			$news = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 6 LIMIT 30" );
-			break;
-		case 'frontline':
-			$news = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 7 LIMIT 30" );
-			break;
-		case 'newrepublic':
-			$news = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 8 LIMIT 30" );
-			break;
-		case 'huffpost':
-			$news = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 9 LIMIT 30" );
-			break;
-		case 'nytimes':
-			$news = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 10 LIMIT 30" );
-			break;
-		case 'npr':
-			$news = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 11 LIMIT 30" );
-			break;
-		// case 'reddit':
-		// 	$news = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 15 LIMIT 30" );
-		// 	break;
-		// case 'reddit_top':
-		// 	$news = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 16 LIMIT 30" );
-		// 	break;
-		// case 'wired':
-		// 	$news = $db->get_results( "SELECT id, content, description FROM headlines WHERE network_id = 12 LIMIT 30" );
-		// 	break;
-		default:
-			error_log( 'whoops' );
-			break;
-	}
+	$news = $db->get_results( "SELECT id, content, url, sentiment, date_published FROM headlines WHERE network_id = $network_id LIMIT 30" );
 
 	return $news;
 }
 
 /**
- * store_news_by_network
+ * store_news_by_url
  * Store news results in db.
  * 
  * @param  string
@@ -314,4 +267,278 @@ function store_news_by_url( $news_link, $network_id ) {
 	}
 
 	return false;
+}
+
+/**
+ * prepare_news_for_storage
+ * Filter out bad headlines, store each result.
+ * 
+ * @param  object
+ */
+function prepare_news_for_storage( $results ) {
+
+	foreach( $results as $result ) {
+		$headline_text = $result->{'headline/_text'};
+
+		if( is_array( $headline_text ) ) {
+
+			for( $i = 0; $i < count( $headline_text ); $i++ ) {
+
+				// if headline word count is less than 2
+				if( count( explode( ' ', $headline_text[$i] ) ) > 2 ) {
+
+					// if headline doesn't contain the following words
+					if( preg_match( '[\/photo\/|\/photos\/|\/video\/|\/videos\/|\/posttv\/]', $result->headline[$i] ) == 0 ) {
+						store_news_by_url( $result->headline[$i], $network_id );
+					}
+				}
+			}
+		}
+		else {
+			// if headline word count is less than 2
+			if( count( explode( ' ', $headline_text ) ) > 2 ) {
+
+				// if headline doesn't contain the following words
+				if( preg_match( '[\/photo\/|\/photos\/|\/video\/|\/videos\/|\/posttv\/]', $result->headline ) == 0 ) {
+					store_news_by_url( $result->headline, $network_id );
+				}
+			}
+		}
+	}
+}
+
+/**
+ * recurse_ancestors
+ * Recurse through ancestors and built taxonomy string
+ * 
+ * @param  string
+ * @param  int
+ * 
+ * @return string
+ */
+function recurse_ancestors( $parent_text, $taxonomy_id ) {
+
+	global $db;
+
+	if( $taxonomy_id != 0 ) {
+		$ancestor_id = $db->get_var( "SELECT ancestor_id FROM taxonomies WHERE id = $taxonomy_id" );
+		$parent_text .= $db->get_var( "SELECT content FROM taxonomies WHERE id = $ancestor_id" ) . ' > ';
+		return recurse_ancestors( $parent_text, $ancestor_id );
+	}
+	else {
+		return $parent_text;
+	}
+}
+
+/**
+ * display_news
+ * Displays news on front end.
+ * 
+ * @param  object
+ */
+function display_news( $news ) {
+
+	global $db;
+
+	foreach( $news as $headline ) {
+
+		// get headline info
+		$headline_id = $headline->id;
+		$text = $headline->content;
+		$url = $headline->url;
+		$date = date( 'l, M j, Y', strtotime( $headline->date_published ) );
+
+		// get image info
+		$image = $db->get_var( "SELECT url FROM images WHERE headline_id = $headline_id" );
+
+		// get concept info
+		$concepts = $db->get_results( "SELECT concept_id, relevance FROM link_concepts WHERE headline_id = $headline_id", OBJECT );
+
+		// get entities info
+		$entities = $db->get_results( "SELECT entity_id, appear_count, relevance, sentiment FROM link_entities WHERE headline_id = $headline_id ORDER BY appear_count DESC", OBJECT );
+
+		// get keyword info 
+		$keywords = $db->get_results( "SELECT keyword_id, relevance, sentiment FROM link_keywords WHERE headline_id = $headline_id", OBJECT );
+
+		// get taxonomy info
+		$taxonomies = $db->get_results( "SELECT taxonomy_id, relevance FROM link_taxonomies WHERE headline_id = $headline_id", OBJECT );
+
+		// get quotations info
+		$quotations = $db->get_results( "SELECT content, sentiment FROM quotations WHERE headline_id = $headline_id", OBJECT );
+
+		echo '<div class="story-ctn">';
+			echo '<p class="date">'. $date .'</p>';
+			if( $image ) {
+				echo '<div class="image-ctn">';
+					if( $headline->sentiment < 0 ) {
+						echo '<div class="overall-sentiment negative tool-right" data-tooltip="'. $headline->sentiment * -100 .'% negative sentiment">';
+							echo $headline->sentiment * -100 .'%';
+						echo '</div>';
+					}
+					else if( $headline->sentiment == 0 ) {
+						echo '<div class="overall-sentiment neutral tool-right" data-tooltip="neutral sentiment">';
+							echo 'neutral';
+						echo '</div>';
+					}
+					else {
+						echo '<div class="overall-sentiment positive tool-right" data-tooltip="'. $headline->sentiment * 100 .'% positive sentiment">';
+							echo $headline->sentiment * 100 .'%';
+						echo '</div>';
+					}
+					echo '<a href="'. $url .'" target="_blank"><img src="'. $image .'" alt="'. $text .'" /></a>';
+				echo '</div>';
+			}
+			echo '<p><a href="'. $url .'" target="_blank"><b>'. $text .'</b></a></p>';
+			echo '<ul class="meta cf">';
+				if( $concepts ) {
+					echo '<li id="concepts" class="tool-bottom" data-tooltip="'. count( $concepts ) .' concepts">';
+					echo file_get_contents("../images/concepts.svg");
+						echo '<ul class="concepts">';
+							echo '<li><b>Concetps by relevance</b></li>';
+							foreach( $concepts as $concept ) {
+								$concept_id = $concept->concept_id;
+
+								$relevance = $concept->relevance;
+								$text = $db->get_var( "SELECT content FROM concepts WHERE id = $concept_id" );
+
+								echo '<li class="tool-right" data-tooltip="'. $relevance * 100 .'% relevant">';
+									echo $text;
+								echo '</li>';
+							}
+						echo '</ul>';
+					echo '</li>';
+				}
+				if( $entities ) {
+					echo '<li id="entities" class="tool-bottom" data-tooltip="'. count( $entities ) .' entities">';
+						echo file_get_contents("../images/entities.svg");
+						echo '<ul class="entities">';
+							echo '<li><b>Entities by appearance count</b></li>';
+							foreach( $entities as $entity ) {
+								$entity_id = $entity->entity_id;
+								$entity_content = $db->get_results( "SELECT type, content FROM entities WHERE id = $entity_id", OBJECT );
+								$tooltip = '<ul class="info">';
+									$tooltip .= '<li>';
+										$type = preg_split('/(?=[A-Z])/', $entity_content[0]->type);
+										$type = implode( ' ', $type );
+										$tooltip .= $type;
+									$tooltip .= '</li>';
+									$tooltip .= '<li>';
+										$tooltip .= $entity->appear_count .' appearances';
+									$tooltip .= '</li>';
+									$tooltip .= '<li>';
+										$tooltip .= $entity->relevance * 100 .'% relevant';
+									$tooltip .= '</li>';
+									if( $entity->sentiment < 0 ) {
+										$tooltip .= '<li class="sentiment negative">';
+											$tooltip .= $entity->sentiment * -100 .'% negative sentiment';
+										$tooltip .= '</li>';
+									}
+									else if( $entity->sentiment == 0 ) {
+										$tooltip .= '<li class="sentiment neutral">';
+											$tooltip .= 'neutral sentiment';
+										$tooltip .= '</li>';
+									}
+									else {
+										$tooltip .= '<li class="sentiment positive">';
+											$tooltip .= $entity->sentiment * 100 .'% positive sentiment';
+										$tooltip .= '</li>';
+									}
+								$tooltip .= '</ul>';
+								echo "<li class='tool-right' data-tooltip='". $tooltip ."'>";
+									echo $entity_content[0]->content;
+								echo '</li>';
+							}
+						echo '</ul>';
+					echo '</li>';
+				}
+				if( $keywords ) {
+					echo '<li id="keywords" class="tool-bottom" data-tooltip="'. count( $keywords ) .' keywords">';
+						echo file_get_contents("../images/keywords.svg");
+						echo '<ul class="keywords">';
+							echo '<li><b>Keywords by relevance</b></li>';
+							foreach( $keywords as $keyword ) {
+								$keyword_id = $keyword->keyword_id;
+								$text = $db->get_var( "SELECT content FROM keywords WHERE id = $keyword_id" );
+								$relevance = $keyword->relevance;
+								$sentiment = $keyword->sentiment;
+
+								$tooltip = '<ul class="info">';
+									$tooltip .= '<li>';
+										$tooltip .= $relevance * 100 .'% relevant';
+									$tooltip .= '</li>';
+									if( $sentiment < 0 ) {
+										$tooltip .= '<li class="sentiment negative">';
+											$tooltip .= $sentiment * -100 .'% negative sentiment';
+										$tooltip .= '</li>';
+									}
+									else if( $sentiment == 0 ) {
+										$tooltip .= '<li class="sentiment neutral">';
+											$tooltip .= 'neutral sentiment';
+										$tooltip .= '</li>';
+									}
+									else {
+										$tooltip .= '<li class="sentiment positive">';
+											$tooltip .= $sentiment * 100 .'% positive sentiment';
+										$tooltip .= '</li>';
+									}
+								$tooltip .= '</ul>';
+
+								echo "<li class='tool-right' data-tooltip='". $tooltip ."'>";
+									echo $text;
+								echo '</li>';
+							}
+						echo '</ul>';
+					echo '</li>';
+				}
+				if( $taxonomies ) {
+					echo '<li id="taxonomy" class="tool-bottom" data-tooltip="'. count( $taxonomies ) .' taxonomies">';
+						echo file_get_contents("../images/taxonomy.svg");
+						echo '<ul class="taxonomy">';
+						echo '<li><b>Taxonomies by relevance</b></li>';
+						foreach( $taxonomies as $taxonomy ) {
+							$taxonomy_id = $taxonomy->taxonomy_id;
+							$text = $db->get_var( "SELECT content FROM taxonomies WHERE id = $taxonomy_id" );
+							$ancestor_string = recurse_ancestors( '', $taxonomy_id );
+							echo '<li class="tool-right" data-tooltip="'. $taxonomy->relevance * 100 .'% accurate">';
+								echo $ancestor_string . $text;
+							echo '</li>';
+						}
+						echo '</ul>';
+					echo '</li>';
+				}
+				if( $quotations ) {
+					echo '<li id="quotes" class="tool-bottom" data-tooltip="'. count( $quotations ) .' quotations">';
+						echo file_get_contents("../images/quotations.svg");
+						echo '<ul class="quotes">';
+							echo '<li><b>Direct Quotes</b></li>';
+							foreach( $quotations as $quotation ) {
+								$tooltip = '';
+								if( $quotation->sentiment < 0 ) {
+									$tooltip .= '<span class="sentiment negative">';
+										$tooltip .= $quotation->sentiment * -100 .'% negative';
+									$tooltip .= '</span>';
+								}
+								else if( $quotation->sentiment == 0 ) {
+									$tooltip .= '<span class="sentiment neutral">';
+										$tooltip .= 'neutral';
+									$tooltip .= '</span>';
+								}
+								else {
+									$tooltip .= '<span class="sentiment positive">';
+										$tooltip .= $quotation->sentiment * 100 .'% positive';
+									$tooltip .= '</span>';
+								}
+								echo "<li class='tool-right' data-tooltip='". $tooltip ."'>";
+									echo '<p>';
+										echo $quotation->content;
+									echo '</p>';
+								echo '</li>';
+							}
+						echo '</ul>';
+					echo '</li>';
+				}
+			echo '</ul>';
+			echo '<div class="meta-expanded"></div>';
+		echo '</div>';
+	}
 }

@@ -28,7 +28,7 @@ function init() {
             $(this).addClass('active');
             showTrack( $(this).data('reveal') );
 
-            if( $('#admin').length > 0 ){
+            if( $('#admin').length > 0 ) {
 
                 if( $(this).data('reveal') === 'all' ) {
 
@@ -137,7 +137,19 @@ function init_meta() {
                 $(this).removeClass('active');
                 meta_info = $('.story-ctn.active .meta-expanded').hide().children('.' + rmv_meta_id).remove();
                 $(this).append( meta_info );
-                init_tooltips();
+                $('.tool-right[data-tooltip!=""]').qtip({
+                    overwrite: false,
+                    content: {
+                        attr: 'data-tooltip'
+                    },
+                    position: {
+                        my: 'left center',
+                        at: 'right center'
+                    },
+                    style: {
+                        classes: 'qtip-bootstrap'
+                    }
+                });
             }
         });
 
@@ -153,7 +165,19 @@ function init_meta() {
             $(this).addClass('active');
             meta_info = $(this).children('.' + meta_id).remove();
             $('.story-ctn.active .meta-expanded').append( meta_info ).show();
-            init_tooltips();
+            $('.tool-right[data-tooltip!=""]').qtip({
+                overwrite: false,
+                content: {
+                    attr: 'data-tooltip'
+                },
+                position: {
+                    my: 'left center',
+                    at: 'right center'
+                },
+                style: {
+                    classes: 'qtip-bootstrap'
+                }
+            });
         }
     });
 }
@@ -171,7 +195,9 @@ function query( network, import_io ) {
         }
     }).done( function returnData( data ) {
         $( '#' + network + ' .track-content' ).append( data );
-        init_meta();
-        init_tooltips();
+        if( $('#admin').length <= 0 ) {
+            init_meta();
+            init_tooltips();
+        }
     });
 }

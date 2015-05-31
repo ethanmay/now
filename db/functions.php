@@ -322,11 +322,13 @@ function recurse_ancestors( $parent_text, $taxonomy_id ) {
 
 	if( $taxonomy_id != 0 ) {
 		$ancestor_id = $db->get_var( "SELECT ancestor_id FROM taxonomies WHERE id = $taxonomy_id" );
-		$parent_text .= $db->get_var( "SELECT content FROM taxonomies WHERE id = $ancestor_id" ) . ' > ';
-		return recurse_ancestors( $parent_text, $ancestor_id );
-	}
-	else {
-		return $parent_text;
+		if( $ancestor_id != 0 ){
+			$parent_text .= $db->get_var( "SELECT content FROM taxonomies WHERE id = $ancestor_id" ) . ' > ';
+			return recurse_ancestors( $parent_text, $ancestor_id );
+		}
+		else {
+			return $parent_text;
+		}
 	}
 }
 
@@ -404,6 +406,7 @@ function display_news( $news ) {
 								echo '<li class="tool-right" data-tooltip="'. $relevance * 100 .'% relevant">';
 									echo $text;
 								echo '</li>';
+								unset( $sentiment_class );
 							}
 						echo '</ul>';
 					echo '</li>';
@@ -432,6 +435,7 @@ function display_news( $news ) {
 										$tooltip .= '<li class="sentiment negative">';
 											$tooltip .= $entity->sentiment * -100 .'% negative sentiment';
 										$tooltip .= '</li>';
+										$sentiment_class = 'negative';
 									}
 									else if( $entity->sentiment == 0 ) {
 										$tooltip .= '<li class="sentiment neutral">';
@@ -442,11 +446,13 @@ function display_news( $news ) {
 										$tooltip .= '<li class="sentiment positive">';
 											$tooltip .= $entity->sentiment * 100 .'% positive sentiment';
 										$tooltip .= '</li>';
+										$sentiment_class = 'positive';
 									}
 								$tooltip .= '</ul>';
-								echo "<li class='tool-right' data-tooltip='". $tooltip ."'>";
+								echo "<li class='tool-right ". $sentiment_class ."' data-tooltip='". $tooltip ."'>";
 									echo $entity_content[0]->content;
 								echo '</li>';
+								unset( $sentiment_class );
 							}
 						echo '</ul>';
 					echo '</li>';
@@ -470,6 +476,7 @@ function display_news( $news ) {
 										$tooltip .= '<li class="sentiment negative">';
 											$tooltip .= $sentiment * -100 .'% negative sentiment';
 										$tooltip .= '</li>';
+										$sentiment_class = 'negative';
 									}
 									else if( $sentiment == 0 ) {
 										$tooltip .= '<li class="sentiment neutral">';
@@ -480,12 +487,14 @@ function display_news( $news ) {
 										$tooltip .= '<li class="sentiment positive">';
 											$tooltip .= $sentiment * 100 .'% positive sentiment';
 										$tooltip .= '</li>';
+										$sentiment_class = 'positive';
 									}
 								$tooltip .= '</ul>';
 
-								echo "<li class='tool-right' data-tooltip='". $tooltip ."'>";
+								echo "<li class='tool-right ". $sentiment_class ."' data-tooltip='". $tooltip ."'>";
 									echo $text;
 								echo '</li>';
+								unset( $sentiment_class );
 							}
 						echo '</ul>';
 					echo '</li>';
@@ -529,9 +538,9 @@ function display_news( $news ) {
 									$tooltip .= '</span>';
 								}
 								echo "<li class='tool-right' data-tooltip='". $tooltip ."'>";
-									echo '<p>';
+									echo '<p><i>';
 										echo $quotation->content;
-									echo '</p>';
+									echo '</i></p>';
 								echo '</li>';
 							}
 						echo '</ul>';

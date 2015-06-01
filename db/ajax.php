@@ -17,7 +17,7 @@ if( $_REQUEST["import_io"] == 'true' ) {
 	$news = import_news_by_network( $network );
 	$results = (object) $news->results;
 
-	prepare_news_for_storage( $results );
+	prepare_news_for_storage( $results, $network_id );
 }
 else {
 	

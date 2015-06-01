@@ -274,8 +274,9 @@ function store_news_by_url( $news_link, $network_id ) {
  * Filter out bad headlines, store each result.
  * 
  * @param  object
+ * @param  int
  */
-function prepare_news_for_storage( $results ) {
+function prepare_news_for_storage( $results, $network_id ) {
 
 	foreach( $results as $result ) {
 		$headline_text = $result->{'headline/_text'};

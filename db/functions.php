@@ -278,6 +278,8 @@ function store_news_by_url( $news_link, $network_id ) {
  */
 function prepare_news_for_storage( $results, $network_id ) {
 
+	$headlines = array();
+
 	foreach( $results as $result ) {
 		$headline_text = $result->{'headline/_text'};
 
@@ -290,7 +292,13 @@ function prepare_news_for_storage( $results, $network_id ) {
 
 					// if headline doesn't contain the following words
 					if( preg_match( '[\/photo\/|\/photos\/|\/video\/|\/videos\/|\/posttv\/]', $result->headline[$i] ) == 0 ) {
-						store_news_by_url( $result->headline[$i], $network_id );
+
+						// if not duplicate headline url
+						if( !in_array( $result->headline[$i], $headlines ) ) {
+
+							array_push( $headlines, $result->headline[$i] );
+							store_news_by_url( $result->headline[$i], $network_id );
+						}
 					}
 				}
 			}
@@ -301,7 +309,13 @@ function prepare_news_for_storage( $results, $network_id ) {
 
 				// if headline doesn't contain the following words
 				if( preg_match( '[\/photo\/|\/photos\/|\/video\/|\/videos\/|\/posttv\/]', $result->headline ) == 0 ) {
-					store_news_by_url( $result->headline, $network_id );
+
+					// if not duplicate headline url
+					if( !in_array( $result->headline[$i], $headlines ) ) {
+
+						array_push( $headlines, $result->headline );
+						store_news_by_url( $result->headline, $network_id );
+					}
 				}
 			}
 		}

@@ -19,21 +19,47 @@
         </div>
         <div class="buttons">
             <ul>
-                <li data-reveal="all">All</li>
-                <li data-reveal="abc">ABC News</li>
-                <li data-reveal="aljazeera">Aljazeera America</li>
-                <li data-reveal="bbc">BBC News</li>
-                <li data-reveal="cnn">CNN News</li>
-                <li data-reveal="fox">Fox News</li>
-                <li data-reveal="frontline">Frontline News</li>
-                <li data-reveal="newrepublic">New Republic</li>
-                <li data-reveal="huffpost">Huffington Post</li>
-                <li data-reveal="nytimes">New York Times</li>
-                <li data-reveal="npr">NPR</li>
-                <li data-reveal="usatoday">USA Today</li>
-                <li data-reveal="msnbc">MSNBC</li>
-                <li data-reveal="wpost">The Washington Post</li>
+                <li class="parent-nav" data-type="networks">
+                    Filter by Network
+                    <ul>
+                        <li data-reveal="all">All</li>
+                        <li data-reveal="abc">ABC News</li>
+                        <li data-reveal="aljazeera">Aljazeera America</li>
+                        <li data-reveal="bbc">BBC News</li>
+                        <li data-reveal="cnn">CNN News</li>
+                        <li data-reveal="fox">Fox News</li>
+                        <li data-reveal="frontline">Frontline News</li>
+                        <li data-reveal="newrepublic">New Republic</li>
+                        <li data-reveal="huffpost">Huffington Post</li>
+                        <li data-reveal="nytimes">New York Times</li>
+                        <li data-reveal="npr">NPR</li>
+                        <li data-reveal="usatoday">USA Today</li>
+                        <li data-reveal="msnbc">MSNBC</li>
+                        <li data-reveal="wpost">The Washington Post</li>
+                    </ul>
+                </li>
+                <li class="parent-nav" data-type="concepts">
+                    Filter by Concepts
+                    <ul>
+                    </ul>
+                </li>
+                <li class="parent-nav" data-type="entities">
+                    Filter by Entities
+                    <ul>
+                    </ul>
+                </li>
+                <li class="parent-nav" data-type="keywords">
+                    Filter by Keywords
+                    <ul>
+                    </ul>
+                </li>
+                <li class="parent-nav" data-type="taxonomies">
+                    Filter by Taxonomies
+                    <ul>
+                    </ul>
+                </li>
             </ul>
+            
         </div>
     
         <div class="tracks">

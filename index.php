@@ -8,6 +8,11 @@
         <link href='http://fonts.googleapis.com/css?family=Crimson+Text:600,400,400italic' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="./css/jquery.qtip.min.css">
         <link rel="stylesheet" href="./css/styles.css">
+
+        <!-- mobile meta -->
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
     </head>
     <body>
         <div id="reveal-menu">
@@ -158,10 +163,10 @@
             <i>Who is this who darkens counsel by words without knowledge?</i>
         </footer>
     </body>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <!-- <script src="./bower_components/jquery/dist/jquery.min.js"></script> -->
-    <script src="http://cdn.import.io/js/2.0.0/importio.js"></script>
-    <!-- <script src="./bower_components/import.io/importio.js"></script> -->
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- <script src="http://cdn.import.io/js/2.0.0/importio.js"></script> -->
+    <script src="./bower_components/import.io/importio.js"></script>
     <script src="./js/prefixfree.min.js"></script>
     <script src="./js/jquery.qtip.min.js"></script>
     <script src="./js/scripts.js"></script>

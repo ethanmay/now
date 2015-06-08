@@ -1,0 +1,12 @@
+/*
+	Mobile Stylesheet
+*/
+@media only screen and (max-width: 768px) {
+	.tracks {
+		background: #fff url("http://localhost/nows/css/../images/logo-mobile.png") no-repeat center center;
+
+		.network-sentiment {
+            top: 133px !important;
+        }
+	}
+}

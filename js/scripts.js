@@ -41,7 +41,16 @@ function init() {
                 }
             }
             else {
-                query( $(this).data('reveal'), false );
+
+                if( $(this).data('reveal') === 'all' ){
+
+                    $('.tracks .track').each( function(){
+                        query( $(this).attr('id'), false );
+                    });
+                }
+                else {
+                    query( $(this).data('reveal'), false );
+                }
             }
         }
     });

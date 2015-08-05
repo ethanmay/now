@@ -1,0 +1,7 @@
+{
+  "name": "NOW",
+  "dependencies": {},
+  "devDependencies": {
+    "import.io": "*"
+  }
+}

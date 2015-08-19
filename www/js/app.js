@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('now', ['ionic', 'now.controllers', 'now.services'])
+angular.module('now', ['ionic', 'now.controllers', 'now.services', 'ng-token-auth'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -23,7 +23,7 @@ angular.module('now', ['ionic', 'now.controllers', 'now.services'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config( function( $stateProvider, $urlRouterProvider, $authProvider ) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router

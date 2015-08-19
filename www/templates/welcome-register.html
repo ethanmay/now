@@ -1,0 +1,58 @@
+<ion-view view-title="Register">
+	<ion-content class="padding">
+		<div id="register">
+		  <form name="registerform" class="card">
+		    <label class="item item-input item-floating-label">
+		      <span class="input-label">First Name</span>
+		      <input
+		        class="v8n-right"
+		        type="text"
+		        placeholder="First Name"
+		        ng-minlength=2
+		        ng-maxlength=35
+		        ng-pattern="/^[a-zA-Z]+$/"
+		        required>
+		      <i class="icon ion-checkmark-circled valid"></i>
+		    </label>
+		    <label class="item item-input item-floating-label">
+		      <span class="input-label">Last Name</span>
+		      <input
+		        class="v8n-right"
+		        type="text"
+		        placeholder="Last Name"
+		        ng-minlength=2
+		        ng-maxlength=35
+		        ng-pattern="/^[a-zA-Z]+$/"
+		        required>
+		      <i class="icon ion-checkmark-circled valid"></i>
+		    </label>
+		    <label class="item item-input item-floating-label">
+		      <span class="input-label">Email</span>
+		      <input
+		        class="v8n-right"
+		        type="email"
+		        placeholder="Email"
+		        ng-pattern="/^[0-9a-zA-Z]+([0-9a-zA-Z]*[-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z]*[.])[a-zA-Z]{2,6}$/"
+		        required>
+		      <i class="icon ion-checkmark-circled valid"></i>
+		    </label>
+		    <label class="item item-input item-floating-label">
+		      <span class="input-label">Password<br><small>Requires one uppercase and lowercase letter, a number and a special character.</small></span>
+		      <input
+		        class="v8n-right"
+		        type="password"
+		        placeholder="Password"
+		        ng-pattern="/(?=^.{8,30}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;&quot;:;'?/&gt;.&lt;,]).*$/"
+		        ng-minlength=8
+		        ng-maxlength=30
+		        required>
+		      <i class="icon ion-checkmark-circled valid"></i>
+		    </label>
+		    <button class="button button-block button-energized" ng-disabled="registerform.$invalid" ng-click="registering = !registering">
+		      <span ng-hide="registering">Register</span>
+		      <ion-spinner class="spinner-light" ng-show="registering" icon="ripple"></ion-spinner>
+		    </button>
+		  </form>
+		</div>
+	</ion-content>
+</ion-view>

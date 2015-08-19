@@ -1,4 +1,10 @@
-angular.module('starter.controllers', [])
+angular.module('now.controllers', [])
+
+.controller('WelcomeCtrl', function($scope) {})
+
+.controller('LoginCtrl', function($scope) {})
+
+.controller('RegisterCtrl', function($scope) {})
 
 .controller('DashCtrl', function($scope) {})
 

@@ -1,0 +1,37 @@
+<ion-view view-title="Login">
+	<ion-content class="padding">
+		<div id="login">
+	        <form name="loginform" class="card">
+	          <label class="item item-input item-floating-label">
+	            <span class="input-label">Email</span>
+	            <input
+	              class="v8n-right"
+	              type="email"
+	              placeholder="Email"
+	              ng-pattern="/^[0-9a-zA-Z]+([0-9a-zA-Z]*[-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z]*[.])[a-zA-Z]{2,6}$/"
+	              required>
+	            <i class="icon ion-checkmark-circled valid"></i>
+	          </label>
+	          <label class="item item-input item-floating-label">
+	            <span class="input-label">Password</span>
+	            <input
+	              class="v8n-right"
+	              type="password"
+	              placeholder="Password"
+	              ng-pattern="/(?=^.{8,30}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;&quot;:;'?/&gt;.&lt;,]).*$/"
+	              ng-minlength=8
+	              ng-maxlength=30
+	              required>
+	            <i class="icon ion-checkmark-circled valid"></i>
+	          </label>
+	          <button class="button button-block button-balanced" ng-disabled="loginform.$invalid" ng-click="logging = !logging">
+	            <span ng-hide="logging">Login</span>
+	            <ion-spinner class="spinner-light" ng-show="logging" icon="ripple"></ion-spinner>
+	          </button>
+	        </form>
+	        <div class="text-center">
+	          <a class="text-center text-green" href="#/forgot-password">Forgot password?</a>
+	        </div>
+	    </div>
+	</ion-content>
+</ion-view>

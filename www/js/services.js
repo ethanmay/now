@@ -4,6 +4,12 @@ angular.module('now.services', [])
   var User = [{}];
 })
 
+.factory('mySocket', function (socketFactory) {
+  var mySocket = socketFactory();
+  mySocket.forward('error');
+  return mySocket;
+})
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 

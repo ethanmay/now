@@ -1,7 +1,7 @@
-<ion-view view-title="Login">
+<ion-view view-title="Login" ng-controller="LoginCtrl">
 	<ion-content class="padding">
 		<div id="login">
-	        <form name="loginform" class="card">
+	        <form name="loginform" class="card" ng-submit="loginSubmit()">
 	          <label class="item item-input item-floating-label">
 	            <span class="input-label">Email</span>
 	            <input
@@ -9,6 +9,7 @@
 	              type="email"
 	              placeholder="Email"
 	              ng-pattern="/^[0-9a-zA-Z]+([0-9a-zA-Z]*[-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z]*[.])[a-zA-Z]{2,6}$/"
+	              ng-model="loginData.email"
 	              required>
 	            <i class="icon ion-checkmark-circled valid"></i>
 	          </label>
@@ -21,6 +22,7 @@
 	              ng-pattern="/(?=^.{8,30}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;&quot;:;'?/&gt;.&lt;,]).*$/"
 	              ng-minlength=8
 	              ng-maxlength=30
+	              ng-model="loginData.password"
 	              required>
 	            <i class="icon ion-checkmark-circled valid"></i>
 	          </label>

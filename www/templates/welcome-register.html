@@ -1,7 +1,7 @@
-<ion-view view-title="Register">
+<ion-view view-title="Register" ng-controller="RegisterCtrl">
 	<ion-content class="padding">
 		<div id="register">
-		  <form name="registerform" class="card">
+		  <form name="registerform" class="card" ng-submit="registerSubmit()">
 		    <label class="item item-input item-floating-label">
 		      <span class="input-label">First Name</span>
 		      <input
@@ -11,6 +11,7 @@
 		        ng-minlength=2
 		        ng-maxlength=35
 		        ng-pattern="/^[a-zA-Z]+$/"
+		        ng-model="registerData.first"
 		        required>
 		      <i class="icon ion-checkmark-circled valid"></i>
 		    </label>
@@ -23,6 +24,7 @@
 		        ng-minlength=2
 		        ng-maxlength=35
 		        ng-pattern="/^[a-zA-Z]+$/"
+		        ng-model="registerData.last"
 		        required>
 		      <i class="icon ion-checkmark-circled valid"></i>
 		    </label>
@@ -33,6 +35,7 @@
 		        type="email"
 		        placeholder="Email"
 		        ng-pattern="/^[0-9a-zA-Z]+([0-9a-zA-Z]*[-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z]*[.])[a-zA-Z]{2,6}$/"
+		        ng-model="registerData.email"
 		        required>
 		      <i class="icon ion-checkmark-circled valid"></i>
 		    </label>
@@ -45,6 +48,7 @@
 		        ng-pattern="/(?=^.{8,30}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;&quot;:;'?/&gt;.&lt;,]).*$/"
 		        ng-minlength=8
 		        ng-maxlength=30
+		        ng-model="registerData.password"
 		        required>
 		      <i class="icon ion-checkmark-circled valid"></i>
 		    </label>

@@ -5,7 +5,13 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('now', ['ionic', 'now.controllers', 'now.services', 'ng-token-auth'])
+angular.module('now', [
+  'ionic',
+  'now.controllers',
+  'now.services',
+  'ng-token-auth',
+  'btford.socket-io'
+])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -21,6 +27,10 @@ angular.module('now', ['ionic', 'now.controllers', 'now.services', 'ng-token-aut
       StatusBar.styleLightContent();
     }
   });
+})
+
+.constant('globalConfig', {
+  'url': 'http://localhost:3000'
 })
 
 .config( function( $stateProvider, $urlRouterProvider, $authProvider ) {

@@ -2,9 +2,60 @@ angular.module('now.controllers', [])
 
 .controller('WelcomeCtrl', function($scope) {})
 
-.controller('LoginCtrl', function($scope) {})
+.controller('LoginCtrl', ['$scope', function($scope) {
 
-.controller('RegisterCtrl', function($scope) {})
+  this.init = function() {
+
+    $scope.loginData = {
+      email: '',
+      password: ''
+    }
+  };
+
+  $scope.loginSubmit = function() {
+    console.log( $scope.loginData.email );
+    console.log( $scope.loginData.password );
+  };
+
+  this.init();
+}])
+
+.controller('RegisterCtrl', [
+  '$scope',
+  '$http',
+  'globalConfig',
+  function( $scope, $http, globalConfig ) {
+
+    this.init = function() {
+
+      $scope.registerData = {
+        first: '',
+        last: '',
+        email: '',
+        password: ''
+      }
+    };
+
+    $scope.$on('socket:error', function (ev, data) {
+      console.log(ev, data);
+    });
+
+    $scope.registerSubmit = function() {
+
+      $http
+        .post( globalConfig.url + '/register', $scope.registerData )
+        .then( function( response ) {
+          console.log('success');
+          console.log(response);
+        }, function( response ) {
+          console.log('fail');
+          console.log(response);
+        });
+    };
+
+    this.init();
+  }
+])
 
 .controller('DashCtrl', function($scope) {})
 

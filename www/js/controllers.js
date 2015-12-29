@@ -23,16 +23,19 @@ angular.module('now.controllers', [])
 .controller('RegisterCtrl', [
   '$scope',
   '$http',
+  '$auth',
   'globalConfig',
-  function( $scope, $http, globalConfig ) {
+  function( $scope, $http, $auth, globalConfig ) {
 
     this.init = function() {
+      $scope.passwordType = 'password';
+    }
 
-      $scope.registerData = {
-        first: '',
-        last: '',
-        email: '',
-        password: ''
+    $scope.passwordToggle = function() {
+      if( $scope.passwordType === 'password' ) {
+        $scope.passwordType = 'text';
+      } else {
+        $scope.passwordType = 'password';
       }
     };
 
@@ -40,20 +43,57 @@ angular.module('now.controllers', [])
       console.log(ev, data);
     });
 
-    $scope.registerSubmit = function() {
+    $scope.registerEmail = function() {
+      $auth
+        .submitRegistration( $scope.registerData )
+        .then( function( resp ) {
+          // handle success response
+          console.log(resp);
+        })
+        .catch( function( resp ) {
+          // handle error response
+          console.log(resp);
+        });
+    };
 
-      $http
-        .post( globalConfig.url + '/register', $scope.registerData )
-        .then( function( response ) {
-          console.log('success');
-          console.log(response);
-        }, function( response ) {
-          console.log('fail');
-          console.log(response);
+    $scope.registerFacebook = function() {
+      $auth.authenticate('facebook')
+        .then(function(resp) {
+          // handle success
+          console.log(resp);
+        })
+        .catch(function(resp) {
+          // handle errors
+          console.log(resp);
+        });
+    };
+
+    $scope.registerTwitter = function() {
+      $auth.authenticate('twitter')
+        .then(function(resp) {
+          // handle success
+          console.log(resp);
+        })
+        .catch(function(resp) {
+          // handle errors
+          console.log(resp);
+        });
+    };
+
+    $scope.registerGoogle = function() {
+      $auth.authenticate('google')
+        .then(function(resp) {
+          // handle success
+          console.log(resp);
+        })
+        .catch(function(resp) {
+          // handle errors
+          console.log(resp);
         });
     };
 
     this.init();
+
   }
 ])
 

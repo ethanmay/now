@@ -30,10 +30,10 @@ angular.module('now', [
 })
 
 .constant('globalConfig', {
-  'url': 'http://localhost:3000'
+  'apiUrl': 'http://localhost:3000'
 })
 
-.config( function( $stateProvider, $urlRouterProvider, $authProvider ) {
+.config( function( $stateProvider, $urlRouterProvider, $authProvider, globalConfig ) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -109,5 +109,40 @@ angular.module('now', [
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/welcome');
+
+  $authProvider.configure({
+    apiUrl:                  globalConfig.apiUrl,
+    tokenValidationPath:     '/auth/validate_token',
+    signOutUrl:              '/auth/sign_out',
+    emailRegistrationPath:   '/auth/email',
+    accountUpdatePath:       '/auth/update',
+    accountDeletePath:       '/auth/delete',
+    passwordResetPath:       '/auth/password/reset',
+    passwordUpdatePath:      '/auth/password/update',
+    emailSignInPath:         '/auth/sign_in',
+    storage:                 'localStorage',
+    forceValidateToken:      false,
+    validateOnPageLoad:      true,
+    omniauthWindowType:      'sameWindow',
+    authProviderPaths: {
+      facebook: '/auth/facebook',
+      twitter: '/auth/twitter',
+      google:   '/auth/google'
+    },
+    tokenFormat: {
+      "access-token": "{{ token }}",
+      "token-type":   "Bearer",
+      "client":       "{{ clientId }}",
+      "expiry":       "{{ expiry }}",
+      "uid":          "{{ uid }}"
+    },
+    cookieOps: {
+      path: "/",
+      expires: 9999,
+      expirationUnit: 'days',
+      secure: false,
+      domain: 'localhost:8100'
+    }
+  });
 
 });

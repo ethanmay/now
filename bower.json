@@ -9,15 +9,20 @@
   "dependencies": {
     "angular-socket-io": "~0.7.0",
     "ng-token-auth": "~0.0.28",
-    "angular-animate": "~1.4.4",
+    "angular-animate": "~1.4.8",
     "angular-ui-router": "~0.2.15",
-    "angular": "~1.4.4",
-    "angular-sanitize": "~1.4.4"
+    "angular": "~1.4.8",
+    "angular-sanitize": "~1.4.8",
+    "angular-jwt": "~0.0.9",
+    "angular-cookie": "~4.0.9",
+    "angular-cookies": "~1.4.8",
+    "ionic": "~1.2.1"
   },
   "resolutions": {
-    "angular": "~1.4.4",
-    "angular-animate": "~1.4.4",
+    "angular": "~1.4.8",
+    "angular-animate": "~1.4.8",
     "angular-ui-router": "~0.2.15",
-    "angular-sanitize": "~1.4.4"
+    "angular-sanitize": "~1.4.8",
+    "ionic": "~1.2.1"
   }
 }

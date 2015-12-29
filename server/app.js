@@ -14,16 +14,25 @@ app.get('/', function(req, res) {
 	res.send('Hello World!');
 });
 
-app.post('/register', function(req, res) {
+app.post('/auth/email', function(req, res, next) {
 
-	var first = req.body.first,
-		last = req.body.last,
-		email = req.body.email,
+	var email = req.body.email,
 		pass = req.body.password;
 
 	var con = connect();
 	con.query(
-		"INSERT INTO users (first, last, email, password) VALUES ('"+ first +"','"+ last +"','"+ email +"','"+ pass +"')",
+		"SELECT id FROM users WHERE email = '"+ email +"'",
+		function( err, rows ) {
+			if( rows ) {
+				res.send('Email already exists.');
+				con.close();
+				next();
+			}
+		}
+	);
+
+	con.query(
+		"INSERT INTO users (email, password) VALUES ('"+ email +"','"+ pass +"')",
 		function( err, rows ) {
 			if( err ) {
 				console.log( err );
